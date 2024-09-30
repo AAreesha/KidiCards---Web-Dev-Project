@@ -1,11 +1,23 @@
-#root {
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./fonts/Quicksand/Quicksand-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family: Quicksand;
+}
+
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
 
-.logo {
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -35,8 +47,8 @@
 
 .card {
   padding: 2em;
-}
+} */
 
-.read-the-docs {
+/* .read-the-docs {
   color: #888;
-}
+} */

@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border:10px solid #d1edfc; */
+    
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../../assets/background.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0; /* Removes default body margin */
+    overflow: hidden;
+}
+
+.registration-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+
+
+.logo{
+    width: 400px;
+    height: 150px;
+}
+.logo img {
+    width: 250px;
+    height: 150px;
+}
+
+.form-container {
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+}
+
+
+
+.register-form input,
+.register-form select {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #d1edfc;
+    border: 0px solid #ddd;
+    border-radius: 25px;
+    font-size: 15px;
+    box-shadow: 0 3px 5px rgba(17, 121, 125, 0.612); 
+
+}
+.register-form input:focus,
+.register-form select:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 10px rgba(17, 121, 125, 0.612);
+    border: 1px solid rgba(50, 192, 197, 0.224);
+    background-color: #e3f8ff; /* Slightly lighter background when focused */
+}
+
+.register-btn {
+    background-color: #f29fb5; /* Pink */
+    border: none;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 70%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    box-shadow: 0 3px 5px  #965063; 
+}
+
+
+
+.google-signup-btn {
+    background-color:#f29fb5; /* Google Red */
+    border: none;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 70%;
+    box-shadow: 0 3px 5px  #965063;
+    margin-bottom: 20px; 
+}
+
+/* Hover Effect */
+
+.google-signup-btn:hover,
+.register-btn:hover {
+    background-color:#dd7f98; /* Darker pink for hover */
+    box-shadow: 0 6px 10px rgba(150, 80, 99, 0.9); /* Increase shadow on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+    outline: none;
+    border: none;
+}
+
+.google-signup-btn:active,
+.register-btn:active {
+    border: none;
+    outline: none;
+    transform: scale(0.93); /* Slightly shrink button when clicked */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow */
+    background-color: #f0a3a3; /* Slight color change for click feedback */
+    transition: transform 0.1s ease; /* Faster scaling effect on click */
+}
