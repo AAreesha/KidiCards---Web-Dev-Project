@@ -1,8 +1,9 @@
-import './Mainpage.css';
 
+import './Mainpage.css'
 const Mainpage = () => {
+
   return (
-    <div className="mainpage-container">
+    <div>
       <p>Mainpage</p>
     </div>
   );
