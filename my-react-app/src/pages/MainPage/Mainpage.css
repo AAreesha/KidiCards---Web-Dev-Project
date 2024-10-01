@@ -1,6 +1,11 @@
+.category-link {
+  text-decoration: none; /* No underline */
+  color: inherit; /* Inherit the color of the text inside the card */
+}
+
 .mainpage-container {
-  width: 100vw;
-  height: 100vh;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
   display: flex;
   justify-content: center; /* Horizontally centers the grid */
   align-items: center; /* Vertically centers the grid */
@@ -10,9 +15,10 @@
 /* Flexbox grid for category cards */
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center; /* Center the cards horizontally */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  justify-items: center; /* Centers the cards in each column */
   gap: 20px; /* Adds space between the cards */
   padding: 20px;
-  max-width: 1000px; /* Restricts the grid width to avoid stretching */
+  max-width: 1200px; /* Restricts the grid width to avoid stretching */
+  width: 100%; /* Full width */
 }

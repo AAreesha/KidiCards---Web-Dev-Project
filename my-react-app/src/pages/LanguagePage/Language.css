@@ -1,0 +1,19 @@
+.category-detail-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* Horizontally centers the grid */
+  align-items: center; /* Vertically centers the grid */
+  background-color: #fff6f6; /* Optional background color */
+}
+
+/* Flexbox grid for category cards */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Change to 2 columns */
+  justify-items: center; /* Centers the cards in their grid cells */
+  gap: 20px; /* Adds space between the cards */
+  padding: 20px;
+  max-width: 800px; /* Restricts the grid width to avoid stretching */
+  width: 100%; /* Allows grid to take full width */
+}

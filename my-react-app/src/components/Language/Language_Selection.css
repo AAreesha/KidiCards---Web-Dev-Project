@@ -1,0 +1,42 @@
+.languageselection-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers the cards */
+  gap: 20px; /* Adds space between the cards */
+  padding: 20px; /* Adds some padding around the grid */
+  width: 100%; /* Ensures the grid takes the full width of the container */
+}
+
+.languageselection-card {
+  flex: 1 1 45%; /* Allows two cards to fit side by side */
+  max-width: 45%; /* Set max width for responsive design */
+  min-width: 300px; /* Minimum width to ensure it looks good */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transitions */
+  height: 250px; /* Adjust height as needed */
+}
+
+.languageselection-card:hover {
+  transform: scale(1.05); /* Slightly expand the card on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.languageselection-card img {
+  width: 150px; /* Image size */
+  height: auto;
+}
+
+.languageselection-card h3 {
+  font-size: 22px; /* English font size */
+  margin-top: 10px;
+}
+
+.languageselection-card h3.urdu {
+  font-size: 24px; /* Increased font size for Urdu */
+  margin-top: 10px;
+}
+

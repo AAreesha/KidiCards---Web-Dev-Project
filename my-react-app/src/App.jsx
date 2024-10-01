@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import Registration from './pages/RegistrationPage/Registration';
 import Login from './pages/LoginPage/login';
 import Mainpage from './pages/MainPage/Mainpage';
+import Language from './pages/LanguagePage/Language'; 
+
 
 function App() {
 
@@ -18,7 +20,7 @@ function App() {
         <Route path="/register" element={<Registration/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/mainpage" element={<Mainpage/>} />
-      
+        <Route exact path="/category/:categoryName" element={<Language />} />
       </Routes>
     </Router>
   );
