@@ -9,8 +9,8 @@
 
 /* Flexbox grid for category cards */
 .category-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center; /* Center the cards horizontally */
   gap: 20px; /* Adds space between the cards */
   padding: 20px;
