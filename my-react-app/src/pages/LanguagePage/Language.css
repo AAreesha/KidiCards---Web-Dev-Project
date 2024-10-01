@@ -1,10 +1,12 @@
-.category-detail-container {
-  width: 100vw;
-  height: 100vh;
+.language-detail-container{
+  width: 100vw; /* Full viewport width */
+  height: auto; /* Change to auto to fit the content */
   display: flex;
-  justify-content: center; /* Horizontally centers the grid */
-  align-items: center; /* Vertically centers the grid */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
   background-color: #fff6f6; /* Optional background color */
+  padding: 20px; /* Optional: Add padding for some space around */
+  min-height: 100vh;
 }
 
 /* Flexbox grid for category cards */
@@ -16,4 +18,16 @@
   padding: 20px;
   max-width: 800px; /* Restricts the grid width to avoid stretching */
   width: 100%; /* Allows grid to take full width */
+}
+
+.languagepage-heading {
+  font-family: 'Lilita One', sans-serif;
+  font-size: 2em; /* Adjust size as needed */
+  font-weight: bold; /* Make the text bold */
+  text-align: center; /* Center the heading */
+  margin: 0; /* Remove all margins */
+  margin-bottom: 20px; /* Space between heading and grid */
+  color: #be749d; /* Set the text color */
+  text-transform: uppercase; /* Optional: Make the text uppercase */
+  background-color: #fff6f6; /* Optional: Background color to match container */
 }

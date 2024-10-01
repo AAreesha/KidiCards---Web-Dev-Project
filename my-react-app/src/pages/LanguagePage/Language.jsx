@@ -27,7 +27,8 @@ const CategoryDetail = () => {
   }
 
   return (
-    <div className="category-detail-container">
+    <div className="language-detail-container">
+        <h1 className="languagepage-heading">Choose your language!</h1>
       <div className="languagecategory-grid"> {/* Added this div for the grid layout */}
         {/* Render the English card */}
         <Language_SelectionCard

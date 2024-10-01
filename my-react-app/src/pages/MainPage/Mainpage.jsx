@@ -21,19 +21,21 @@ const categories = [
 const Mainpage = () => {
   return (
     <div className="mainpage-container">
-      <div className="category-grid">
-        {categories.map((category, index) => (
-          <Link 
-            key={index} 
-            to={`/category/${category.name.toLowerCase()}`} // Dynamic route for category
-            className="category-link"
-          >
-            <CategoryCard name={category.name} image={category.image} />
-          </Link>
-        ))}
-      </div>
+    <h1 className="mainpage-heading">Explore, Learn, and Play!</h1>
+    <div className="category-grid">
+      {categories.map((category, index) => (
+        <Link 
+          key={index} 
+          to={`/category/${category.name.toLowerCase()}`} // Dynamic route for category
+          className="category-link"
+        >
+          <CategoryCard name={category.name} image={category.image} />
+        </Link>
+      ))}
     </div>
+  </div>
   );
+  
 };
 
 export default Mainpage;
