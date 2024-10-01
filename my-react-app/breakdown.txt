@@ -1,16 +1,20 @@
 Pages:
-Registration Page
-Login Page
-HomePage 
-About Us 
-Language Mode
-Learning Mode
-Flash Card Pages
+back button 
+
+Registration Page: error checks, text box labels, handle submit
+Login Page: error checks, text box labels, handle submit
+HomeMainPage: Abeeha
+About Us: Areesha
+Language Mode: Abeeha
+Learning Mode: 
+Flash Card Pages: sath banatay hain
+Navigation Bar: Areesha
+
 
 
 Components:
 1. Navigation Bar
-2. Category Box: Numbers, Colors, etc
+2. Category Box: Numbers, Colors, etc: effects, hover
 3. Subcategory box: langauge box
 4. Learning Mode box
 
