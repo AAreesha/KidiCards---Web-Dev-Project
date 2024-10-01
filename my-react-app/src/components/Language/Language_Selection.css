@@ -4,7 +4,7 @@
   justify-content: center; /* Centers the cards */
   gap: 20px; /* Adds space between the cards */
   padding: 20px; /* Adds some padding around the grid */
-  width: 100%; /* Ensures the grid takes the full width of the container */
+  
 }
 
 .languageselection-card {
@@ -26,17 +26,17 @@
 }
 
 .languageselection-card img {
-  width: 150px; /* Image size */
+  width: 250px; /* Image size */
   height: auto;
 }
 
 .languageselection-card h3 {
-  font-size: 22px; /* English font size */
+  font-size: 30px; /* English font size */
   margin-top: 10px;
 }
 
 .languageselection-card h3.urdu {
-  font-size: 24px; /* Increased font size for Urdu */
+  font-size: 40px; /* Increased font size for Urdu */
   margin-top: 10px;
 }
 
