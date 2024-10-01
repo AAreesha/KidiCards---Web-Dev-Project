@@ -8,7 +8,7 @@
 }
 
 /* Flexbox grid for category cards */
-.category-grid {
+.languagecategory-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Change to 2 columns */
   justify-items: center; /* Centers the cards in their grid cells */

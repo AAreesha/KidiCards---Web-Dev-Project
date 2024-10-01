@@ -9,26 +9,28 @@
 }
 
 .category-card {
-  flex: 1 1 200px; /* Flex-grow: 1, flex-shrink: 1, and flex-basis: 200px */
-  max-width: 200px;
-  min-width: 150px; /* Ensures minimum size for smaller screens */
+  flex: 1 1 250px; /* Change flex-basis to 250px for a larger default size */
+  max-width: 350px; /* Increase max-width to 350px */
+  min-width: 200px; /* This can remain the same or adjust as needed */
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transitions */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .category-card:hover {
   transform: scale(1.05); /* Slightly expand the card on hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
 }
+
 .category-card img {
-  width: 120px;
+  width: 150px; /* Adjust image width if necessary */
   height: auto;
 }
 
 .category-card h3 {
-  font-size: 20px;
+  font-size: 22px; /* Optionally increase font size for better visibility */
   margin-top: 10px;
 }
