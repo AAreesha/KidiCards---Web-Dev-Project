@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Language_SelectionCard from '../../components/Language/Language_Selection';
 import AnimalImage from '../../assets/CategoryIcons/Animals.png';
 import AlphabetsImage from '../../assets/CategoryIcons/alphabets.png';
@@ -21,30 +21,32 @@ const categories = {
 
 const CategoryDetail = () => {
   const { categoryName } = useParams(); // Get the category from the URL
+  const navigate = useNavigate(); // For programmatic navigation
   const category = categories[categoryName.toLowerCase()]; // Fetch the right category object
 
   if (!category) {
     return <div>Category not found</div>;
   }
+  const handleLanguageSelection = (language) => {
+    navigate(`/${categoryName.toLowerCase()}/${language}`); // Navigate to the appropriate page
+  };
 
   return (
     <div className="language-detail-container">
       <NavBar/>
-        <h1 className="languagepage-heading">Choose your language!</h1>
-      <div className="languagecategory-grid"> {/* Added this div for the grid layout */}
-        {/* Render the English card */}
-        <Language_SelectionCard
-          name={`${category.english}`} 
-          image={category.image} 
-        />
+    <h1 className="languagepage-heading">Choose your language!</h1>
+    <div className="languagecategory-grid">
+      {/* Render the English card */}
+      <div onClick={() => handleLanguageSelection('english')}>
+        <Language_SelectionCard name={`${category.english}`} image={category.image} />
+      </div>
 
-        {/* Render the Urdu card */}
-        <Language_SelectionCard
-          name={`${category.urdu}`} 
-          image={category.image} 
-        />
+      {/* Render the Urdu card */}
+      <div onClick={() => handleLanguageSelection('urdu')}>
+        <Language_SelectionCard name={`${category.urdu}`} image={category.image} />
       </div>
     </div>
+  </div>
   );
 };
 

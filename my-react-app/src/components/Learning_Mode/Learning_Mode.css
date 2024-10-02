@@ -1,0 +1,43 @@
+.learningmode-grid {
+  display: flex;
+  flex-direction: column; /* This makes the cards stack vertically */
+  align-items: center; /* Align the cards horizontally in the center */
+  gap: 20px; /* Adds space between the cards */
+    
+  }
+  
+  .learningmode-card {
+    flex: 1 1 auto; /* Cards grow and shrink based on available space */
+    width: 100%; /* Take full width of the container */
+    max-width: 500px; /* Restrict max width for responsiveness */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0; /* Space between cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    height: 200px; /* Adjust based on content */
+  }
+  
+  .learningmode-card:hover {
+    transform: scale(1.05); /* Slightly expand the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  }
+  
+  .learningmode-card img {
+    width: 200px; /* Image size */
+    height: auto;
+  }
+  
+  .learningmode-card h3 {
+    font-size: 25px; /* English font size */
+    margin-top: 10px;
+  }
+  
+  .learningmode-card h3.urdu {
+    font-size: 30px; /* Increased font size for Urdu */
+    margin-top: 10px;
+  }
+  
+ 

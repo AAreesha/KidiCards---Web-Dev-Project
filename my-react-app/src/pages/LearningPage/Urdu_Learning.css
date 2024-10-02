@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap');
+.Urducategory-page-container {
+  text-align: center;
+  padding: 120px 50px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff6f6; 
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  }
+  
+  .Urducard-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .Urducard-column > div {
+    margin-bottom: 20px; /* Space between cards */
+    align-items: center;
+  }
+  .Urducard-heading {
+ 
+    font-family: 'Noto Nastaliq Urdu', sans-serif;
+    font-size: 2em; /* Adjust size as needed */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center the heading */
+    margin: 0; /* Remove all margins */
+    margin-bottom: 50px; /* Space between heading and grid */
+    color: #be749d; /* Set the text color */
+    text-transform: uppercase; /* Optional: Make the text uppercase */
+    background-color: #fff6f6; /* Optional: Background color to match container */
+  }

@@ -5,6 +5,8 @@ import Registration from './pages/RegistrationPage/Registration';
 import Login from './pages/LoginPage/login';
 import Mainpage from './pages/MainPage/Mainpage';
 import Language from './pages/LanguagePage/Language'; 
+import EnglishCategoryPage from './pages/LearningPage/English_Learning';
+import UrduCategoryPage from './pages/LearningPage/Urdu_Learning';
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/mainpage" element={<Mainpage/>} />
         <Route exact path="/category/:categoryName" element={<Language />} />
+        <Route path="/:categoryName/english" element={<EnglishCategoryPage />} />
+        <Route path="/:categoryName/urdu" element={<UrduCategoryPage />} />
       </Routes>
     </Router>
   );
