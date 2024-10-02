@@ -4,6 +4,7 @@
 }
 
 .mainpage-container {
+  flex-direction: column;
   width: 100vw; /* Full viewport width */
   height: 100vh; /* Full viewport height */
   display: flex;
@@ -19,6 +20,6 @@
   justify-items: center; /* Centers the cards in each column */
   gap: 20px; /* Adds space between the cards */
   padding: 20px;
-  max-width: 1200px; /* Restricts the grid width to avoid stretching */
+  max-width: 800px; /* Restricts the grid width to avoid stretching */
   width: 100%; /* Full width */
 }

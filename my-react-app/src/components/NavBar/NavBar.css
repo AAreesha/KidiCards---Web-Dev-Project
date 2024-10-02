@@ -1,0 +1,40 @@
+/* NavBar styling */
+.navbar {
+    width: 100%;
+    height: 120px;
+    position: fixed;  /* Fixes the navbar at the top */
+    top: 0;           /* Aligns the navbar to the top */
+    left: 0;          /* Ensures the navbar stretches across the width of the page */
+    z-index: 1000;    /* Ensures the navbar stays on top of other elements */
+    display: flex;
+    justify-content: space-between;
+    padding: 1px;
+    background-color: #fff7f7; /* Light pink background */
+    box-shadow: 0 2px 5px rgba(123, 27, 27, 0.1); 
+}
+
+.navbar-logo {
+    width: 200px;
+    height: auto;
+}
+
+.navbar-icons {
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    font-size: 40px !important;
+    margin-right: 20px;
+    margin-top: 10px;
+    color: #d96264; /* Matching search icon color */
+}
+
+.navbar-profile-icon {
+    width: 50px !important;  
+    height: 50px !important;
+    margin-right: 30px;
+    /* Specific class targeting the MUI Avatar component */
+  
+}
+

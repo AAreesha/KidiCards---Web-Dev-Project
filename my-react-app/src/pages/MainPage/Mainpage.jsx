@@ -7,6 +7,7 @@ import Fruits from "../../assets/CategoryIcons/fruits.png";
 import Numbers from "../../assets/CategoryIcons/numbers.png";
 import Veggies from "../../assets/CategoryIcons/veggies.png";
 import Colors from "../../assets/CategoryIcons/colors.png";
+import NavBar from '../../components/NavBar/NavBar';
 import "./Mainpage.css";
 
 const categories = [
@@ -20,7 +21,9 @@ const categories = [
 
 const Mainpage = () => {
   return (
+   
     <div className="mainpage-container">
+      <NavBar/>
       <div className="category-grid">
         {categories.map((category, index) => (
           <Link 

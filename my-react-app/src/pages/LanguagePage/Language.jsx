@@ -7,6 +7,7 @@ import NumbersImage from '../../assets/CategoryIcons/numbers.png';
 import VeggiesImage from '../../assets/CategoryIcons/veggies.png';
 import ColorsImage from '../../assets/CategoryIcons/colors.png';
 import './Language.css';
+import NavBar from '../../components/NavBar/NavBar';
 
 // Translations for each category (with the same image for both English and Urdu)
 const categories = {
@@ -28,6 +29,7 @@ const CategoryDetail = () => {
 
   return (
     <div className="category-detail-container">
+      <NavBar/>
       <div className="languagecategory-grid"> {/* Added this div for the grid layout */}
         {/* Render the English card */}
         <Language_SelectionCard
