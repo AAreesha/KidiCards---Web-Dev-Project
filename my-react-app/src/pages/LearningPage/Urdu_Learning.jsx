@@ -13,27 +13,27 @@ const UrduCategoryPage = () => {
   let output = '';
   if (firstPart == 'vegetables')
     {
-      output = '! آؤ سبزیاں سیکھیں'
+      output = '! سبزیوں کی دُنیا میں خوش آمدید'
     }
     else if (firstPart == 'alphabets')
       {
-        output = '! آؤ حروف سیکھیں'
+        output = '! حروف کی دنیا میں خوش آمدید'
       }
       else if (firstPart == 'numbers')
         {
-          output = '! آؤ اعداد  سیکھیں'
+          output = '!اعداد کی دنیا میں خوش آمدید'
         }
       else if (firstPart == 'fruits')
         {
-          output = '! آؤ پھل سیکھیں'
+          output = '! پھلوں کی دنیا میں خوش آمدید'
         }
       else if (firstPart == 'animals')
         {
-          output = '! آؤ جانور سیکھیں'
+          output = '! جانوروں کی دنیا میں خوش آمدید'
         }
       else if (firstPart == 'colors')
         {
-          output = '! آؤ رنگ سیکھیں'
+          output = '! رنگوں کی دُنیا میں خوش آمدید'
         }
   return (
     <div className="Urducategory-page-container">
