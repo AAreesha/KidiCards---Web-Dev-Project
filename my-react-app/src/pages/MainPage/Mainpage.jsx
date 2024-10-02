@@ -24,6 +24,7 @@ const Mainpage = () => {
    
     <div className="mainpage-container">
       <NavBar/>
+      <h1 className="mainpage-heading">Explore, Learn, and Play!</h1>
       <div className="category-grid">
         {categories.map((category, index) => (
           <Link 
@@ -36,7 +37,9 @@ const Mainpage = () => {
         ))}
       </div>
     </div>
+  
   );
+  
 };
 
 export default Mainpage;
