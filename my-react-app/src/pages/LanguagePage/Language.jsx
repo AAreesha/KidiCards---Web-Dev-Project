@@ -33,7 +33,7 @@ const CategoryDetail = () => {
 
   return (
     <div className="language-detail-container">
-      <NavBar/>
+    <NavBar/>
     <h1 className="languagepage-heading">Choose your language!</h1>
     <div className="languagecategory-grid">
       {/* Render the English card */}

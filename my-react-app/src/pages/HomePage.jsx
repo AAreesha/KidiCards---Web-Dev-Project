@@ -1,15 +1,18 @@
 
 import { Link } from 'react-router-dom';
-
-
+import cloudImage from "../assets/icon.png"
+import "./HomePage.css"
+import logo from "../assets/logo.png"
 const HomePage = () => {
   return (
     <div>
-      <h2>Home Page</h2>
-      <p>Welcome to the Home Page of our application. Enjoy your stay!</p>
+     
+     <img src={logo} alt="home-logo" className="home-logo" />
       <Link to="/register">
-            <button className="register-btn">Go to Registration</button>
+            <button className="home-register-btn">SignUp</button>
+            <button className="home-login-btn">Sign In</button>
         </Link>
+        <img src={cloudImage} alt="Cloud" className="cloud" />
     </div>
   );
 }

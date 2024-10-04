@@ -8,8 +8,8 @@
   
   .learningmode-card {
     flex: 1 1 auto; /* Cards grow and shrink based on available space */
-    width: 100%; /* Take full width of the container */
-    max-width: 500px; /* Restrict max width for responsiveness */
+    width: 300px; /* Take full width of the container */
+    /* width: 500px; Restrict max width for responsiveness */
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@
     padding: 20px;
     margin: 20px 0; /* Space between cards */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
-    height: 200px; /* Adjust based on content */
+    height: 250px; /* Adjust based on content */
   }
   
   .learningmode-card:hover {
@@ -26,18 +26,14 @@
   }
   
   .learningmode-card img {
-    width: 200px; /* Image size */
+    width: 250px; /* Image size */
     height: auto;
   }
   
   .learningmode-card h3 {
-    font-size: 25px; /* English font size */
+    font-size: 40px; /* English font size */
     margin-top: 10px;
-  }
-  
-  .learningmode-card h3.urdu {
-    font-size: 30px; /* Increased font size for Urdu */
-    margin-top: 10px;
+    color:rgb(112, 14, 67);
   }
   
  

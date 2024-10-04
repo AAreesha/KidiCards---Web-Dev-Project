@@ -17,7 +17,7 @@ const EnglishCategoryPage = () => {
     <div className="Englishcategory-page-container">
       <NavBar/>
       <h1 className="Englishcard-heading">{firstPart1} Time!</h1>
-      <div className="Englsihcard-column">
+      <div className="Englishcard-column">
       <Learning name={`Learn`} image={Learn}/>
       <Learning name={`Test`} image={Test} />
       <Learning name={`Matching`} image={Match} />

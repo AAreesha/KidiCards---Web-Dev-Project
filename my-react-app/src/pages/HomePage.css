@@ -1,0 +1,38 @@
+/* CloudAnimation.css */
+@keyframes moveCloud {
+    0% {
+      transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    100% {
+      transform: translateX(100%); /* Move off-screen to the right */
+    }
+  }
+
+  .home-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center items */
+    align-items: center; /* Horizontally center items */
+    height: 100vh;
+    text-align: center;
+    position: relative;
+  }
+  
+  
+  .cloud {
+    position: absolute;
+    top: 50px; /* Adjust this based on where you want the cloud */
+    width: 150px;
+    height: auto;
+    animation: moveCloud 10s linear infinite; /* 10 seconds to complete one move */
+  }
+
+  .home-logo {
+    width: 600px; /* Adjust logo size */
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto; /* These margins will center the logo horizontally */
+}
+
+  
+  
