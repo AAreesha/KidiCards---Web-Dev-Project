@@ -1,77 +1,71 @@
 .homepage-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Vertically center items */
+  align-items: center; /* Horizontally center items */
   height: 100vh;
   text-align: center;
   position: relative;
-  overflow: hidden;
-}
 
-.cloud-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; /* Ensure clouds are behind the logo and buttons */
 }
 
 @keyframes moveCloud {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Start off-screen to the left */
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(100%); /* Move off-screen to the right */
   }
 }
+
 
 .cloud {
   position: absolute;
+  top: 50px; /* Adjust this based on where you want the cloud */
   width: 150px;
   height: auto;
-  animation: moveCloud linear infinite;
-  opacity: 0.8; /* Slight transparency for clouds */
-}
-
-/* Different speed for some clouds */
-.cloud:nth-child(odd) {
-  animation: moveCloud 15s linear infinite;
+  animation: moveCloud 10s linear infinite; /* 10 seconds to complete one move */
 }
 
 .home-logo {
-  width: 550px;
+  width: 550px; /* Adjust logo size */
   margin-top: 10vh;
-  z-index: 10; /* Ensure logo is on top of the clouds */
+  margin-left: 45px; /* You can control the left margin here */
 }
 
 .home-login-btn,
 .home-register-btn {
-  background-color: #f29fb5;
+  background-color: #f29fb5; /* Pink */
   border: none;
   color: white;
   padding: 12px;
   font-size: 18px;
   border-radius: 25px;
   cursor: pointer;
-  box-shadow: 0 3px 5px #965063;
+  box-shadow: 0 3px 5px  #965063; 
   width: 200px;
-  z-index: 10; /* Keep buttons above the clouds */
 }
 
+
 .home-login-btn:hover,
-.home-register-btn:hover {
-  background-color: #dd7f98;
-  box-shadow: 0 6px 10px rgba(150, 80, 99, 0.9);
-  transform: scale(1.05);
+.home-register-btn:hover{
+    background-color:#dd7f98; /* Darker pink for hover */
+    box-shadow: 0 6px 10px rgba(150, 80, 99, 0.9); /* Increase shadow on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+    outline: none;
+    border: none;
 }
 
 .home-login-btn:active,
 .home-register-btn:active {
-  transform: scale(0.93);
+    border: none;
+    outline: none;
+    transform: scale(0.93); /* Slightly shrink button when clicked */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow */
+    background-color: #f0a3a3; /* Slight color change for click feedback */
+    transition: transform 0.1s ease; /* Faster scaling effect on click */
 }
 
-.home-login-btn {
-  margin-top: 15px;
-}
+.home-login-btn{
+ margin-top: 15px;
+} 
