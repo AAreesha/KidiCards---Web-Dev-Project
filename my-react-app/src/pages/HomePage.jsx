@@ -58,6 +58,6 @@ const HomePage = () => {
       <div className="cloud-container"></div> {/* Container to hold all clouds */}
     </div>
   );
-}
+};
 
 export default HomePage;
