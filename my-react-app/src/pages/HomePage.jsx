@@ -36,6 +36,7 @@ const HomePage = () => {
       <Link to="/login">
         <button className="home-login-btn">Sign In</button>
       </Link>
+      
       <div className="cloud-container"></div> {/* Container to hold all clouds */}
     </div>
   );
