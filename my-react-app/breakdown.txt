@@ -22,6 +22,6 @@ Components:
 Interactions:
 1. Login and Registration: Input, Errors, Submission, Redirection
 2. HomePage: click box and redirect to subcategory box, Filter to search categories, profile information -> log out, About Us
-
+3. We need cute curors everywhere
 
 
