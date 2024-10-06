@@ -7,10 +7,18 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <img src={Logo} alt="KidiCards Logo" className="navbar-logo" />
+      <a href="/" className="navbar-logo-link">
+          <img src={Logo} alt="KidiCards Logo" className="navbar-logo" />
+        </a>
       </div>
       <div className="navbar-icons">
+       
+        <a href="/aboutus" className="navbar-link">About Us</a>
         <SearchIcon className="search-icon" />
+
+
+      
+        
         <Avatar alt="Profile" src={ProfileIcon} className="navbar-profile-icon"  />
       </div>
     </nav>

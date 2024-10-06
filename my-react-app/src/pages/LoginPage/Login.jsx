@@ -61,6 +61,9 @@ const Login = () => {
       <p>
           Go To Home Page<a href="/mainpage">Mainpage</a>
       </p>
+      <p>
+          Go To About Us<a href="/aboutus">About Us</a>
+      </p>
     </div>
   );
 };

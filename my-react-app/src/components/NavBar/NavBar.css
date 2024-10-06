@@ -13,6 +13,15 @@
     box-shadow: 0 2px 5px rgba(123, 27, 27, 0.1); 
 }
 
+.navbar-link {
+    text-decoration: none;
+    color: #d85d5d; /* Dark text color */
+    margin-top: 5px;
+    margin-right: 15px; /* Spacing between items */
+    font-weight: bold; /* Bold text for emphasis */
+    transition: color 0.3s ease; /* Smooth color change on hover */
+  }
+
 .navbar-logo {
     width: 200px;
     height: auto;

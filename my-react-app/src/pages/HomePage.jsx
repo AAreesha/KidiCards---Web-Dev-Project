@@ -39,28 +39,6 @@ const HomePage = () => {
     }
   };
 
-  // Function to generate fixed-position clouds
-  const createFixedClouds = () => {
-    const cloudContainer = document.querySelector('.cloud-container');
-
-    // First fixed cloud
-    const fixedCloud1 = document.createElement('img');
-    fixedCloud1.src = cloudImage;
-    fixedCloud1.classList.add('fixed-cloud', 'fixed-cloud1');
-    cloudContainer.appendChild(fixedCloud1);
-
-    // Second fixed cloud
-    const fixedCloud2 = document.createElement('img');
-    fixedCloud2.src = cloudImage2;
-    fixedCloud2.classList.add('fixed-cloud', 'fixed-cloud2');
-    cloudContainer.appendChild(fixedCloud2);
-
-    // Third fixed cloud
-    const fixedCloud3 = document.createElement('img');
-    fixedCloud3.src = cloudImage;
-    fixedCloud3.classList.add('fixed-cloud', 'fixed-cloud3');
-    cloudContainer.appendChild(fixedCloud3);
-  };
 
   useEffect(() => {
     createClouds();        // Create animated clouds on load
