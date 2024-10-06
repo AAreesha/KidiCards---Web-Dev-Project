@@ -1,67 +1,101 @@
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import cloudImage from "../assets/cloud.png";
-import cloudImage2 from "../assets/cloud2.png";
-import "./HomePage.css";
-import logo from "../assets/navbar_logo.png";
+import { useEffect, useRef, useState } from 'react'; 
+import { useNavigate } from 'react-router-dom'; 
+import cloudImage from "../assets/cloud.png"; 
+import cloudImage2 from "../assets/cloud2.png"; 
+import logo from "../assets/navbar_logo.png"; 
+import mouse from "../assets/mouse.mp3"; 
+import fadeInSound from "../assets/entrysound.mp3"; 
+import "./HomePage.css"; 
 
 const HomePage = () => {
+  const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
+  const fadeInSoundRef = useRef(new Audio(fadeInSound)); // Create a new Audio object for fade-in sound
+  const navigate = useNavigate(); 
+  const [soundPlayed, setSoundPlayed] = useState(false); 
 
-  // Function to generate multiple animated clouds
+  // Function to handle button click and play mouse click sound
+  const handleButtonClick = (path) => {
+    if (clickSoundRef.current) {
+      clickSoundRef.current.currentTime = 0; // Reset sound to start
+      clickSoundRef.current.play().then(() => {
+        setTimeout(() => {
+          navigate(path);
+        }, 500);
+      }).catch(error => console.error("Sound playback failed", error));
+    }
+  };
+
+  useEffect(() => {
+    // Mouse move event listener to play the fade-in sound only once
+    const handleMouseMove = () => {
+      if (!soundPlayed && fadeInSoundRef.current) {
+        fadeInSoundRef.current.currentTime = 0; // Reset sound to start
+        fadeInSoundRef.current.play().then(() => {
+          setSoundPlayed(true); // Ensure it only plays once
+        }).catch(error => console.error("Fade-in sound playback failed", error));
+      }
+    };
+
+    // Attach the mousemove event listener
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [soundPlayed]); 
+
+  // Function to create clouds
   const createClouds = () => {
     const cloudContainer = document.querySelector('.cloud-container');
-    
-    // Create 2 animated clouds
     for (let i = 0; i < 1; i++) {
       const cloud = document.createElement('img');
-      cloud.src = i % 2 === 0 ? cloudImage : cloudImage2; // Alternate between two cloud images
-      cloud.classList.add('cloud');  // Add cloud class for animation
-      cloud.style.top = `${Math.random() * window.innerHeight}px`;  // Random vertical position
-      cloud.style.left = `${Math.random() * window.innerWidth}px`;  // Random horizontal position
-      cloud.style.animationDuration = `${Math.random() * 10 + 5}s`; // Random animation speed
+      cloud.src = i % 2 === 0 ? cloudImage : cloudImage2;
+      cloud.classList.add('cloud');
+      cloud.style.top = `${Math.random() * window.innerHeight}px`;
+      cloud.style.left = `${Math.random() * window.innerWidth}px`;
+      cloud.style.animationDuration = `${Math.random() * 10 + 5}s`;
       cloudContainer.appendChild(cloud);
     }
   };
 
-  // Function to generate smaller animated clouds
+  // Function to create small clouds
   const createsmallClouds = () => {
     const cloudContainer = document.querySelector('.cloud-container');
-    
-    // Create 2 small clouds
     for (let i = 0; i < 2; i++) {
       const smolcloud = document.createElement('img');
-      smolcloud.src = i % 2 === 0 ? cloudImage : cloudImage2; // Alternate between two cloud images
-      smolcloud.classList.add('smolcloud');  // Add smolcloud class for animation
-      smolcloud.style.top = `${Math.random() * window.innerHeight}px`;  // Random vertical position
-      smolcloud.style.left = `${Math.random() * window.innerWidth}px`;  // Random horizontal position
-      smolcloud.style.animationDuration = `${Math.random() * 10 + 5}s`; // Random animation speed
+      smolcloud.src = i % 2 === 0 ? cloudImage : cloudImage2;
+      smolcloud.classList.add('smolcloud');
+      smolcloud.style.top = `${Math.random() * window.innerHeight}px`;
+      smolcloud.style.left = `${Math.random() * window.innerWidth}px`;
+      smolcloud.style.animationDuration = `${Math.random() * 10 + 5}s`;
       cloudContainer.appendChild(smolcloud);
     }
   };
 
-
+  // Create clouds on component mount
   useEffect(() => {
-    createClouds();        // Create animated clouds on load
-    createsmallClouds();    // Create smaller animated clouds on load
-    // createFixedClouds();    // Create fixed-position clouds on load
+    createClouds(); 
+    createsmallClouds();
   }, []);
 
   return (
- 
-
-  
     <div className='homepage-container'>
       <img src={logo} alt="home-logo" className="home-logo" />
-      <Link to="/register">
-        <button className="home-register-btn">Sign Up</button>
-      </Link>
-      <Link to="/login">
-        <button className="home-login-btn">Sign In</button>
-      </Link>
-      
-      <div className="cloud-container"></div> {/* Container to hold all clouds */}
+      <button 
+        className="home-register-btn" 
+        onClick={() => handleButtonClick("/register")}
+      >
+        Sign Up
+      </button>
+      <button 
+        className="home-login-btn" 
+        onClick={() => handleButtonClick("/login")}
+      >
+        Sign In
+      </button>
+      <div className="cloud-container"></div> 
     </div>
-  
   );
 };
 

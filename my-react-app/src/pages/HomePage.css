@@ -108,11 +108,25 @@
   align-items: center;
   pointer-events: none; /* This will allow interaction with elements above clouds */
 }
+@keyframes fadeInScale {
+  0% {
+    transform: scale(0.5); /* Start smaller */
+    opacity: 0; /* Fully transparent */
+  }
+  100% {
+    transform: scale(1); /* Full size */
+    opacity: 1; /* Fully visible */
+  }
+}
+
 .home-logo {
   width: 550px;
   margin-top: 20vh;
-  z-index: 10; /* Ensure logo is on top of the clouds */
+  z-index: 10;
+  animation: fadeInScale 2s ease-in-out; /* Smooth fade and scale animation */
 }
+
+
 
 .home-login-btn,
 .home-register-btn {
