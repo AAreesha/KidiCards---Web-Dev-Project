@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 import Language_SelectionCard from '../../components/Language/Language_Selection';
 import AnimalImage from '../../assets/CategoryIcons/Animals.png';
 import AlphabetsImage from '../../assets/CategoryIcons/alphabets.png';
@@ -8,6 +9,7 @@ import VeggiesImage from '../../assets/CategoryIcons/veggies.png';
 import ColorsImage from '../../assets/CategoryIcons/colors.png';
 import './Language.css';
 import NavBar from '../../components/NavBar/NavBar';
+import mouse from "../../assets/mouse.mp3"
 
 // Translations for each category (with the same image for both English and Urdu)
 const categories = {
@@ -22,15 +24,24 @@ const categories = {
 const CategoryDetail = () => {
   const { categoryName } = useParams(); // Get the category from the URL
   const navigate = useNavigate(); // For programmatic navigation
+  const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
   const category = categories[categoryName.toLowerCase()]; // Fetch the right category object
 
   if (!category) {
     return <div>Category not found</div>;
   }
   const handleLanguageSelection = (language) => {
-    navigate(`/${categoryName.toLowerCase()}/${language}`); // Navigate to the appropriate page
+    if (clickSoundRef.current) {
+      clickSoundRef.current.currentTime = 0; // Reset sound to start
+      clickSoundRef.current.play().then(() => {
+        setTimeout(() => {
+          navigate(`/${categoryName.toLowerCase()}/${language}`); // Navigate to the appropriate page;
+        }, 500);
+      }).catch(error => console.error("Sound playback failed", error));
+    }
   };
 
+  
   return (
     <div className="language-detail-container">
     <NavBar/>
