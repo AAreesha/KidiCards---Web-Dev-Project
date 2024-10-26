@@ -7,6 +7,7 @@ import mouse from "../assets/mouse.mp3";
 import fadeInSound from "../assets/entrysound.mp3"; 
 import "./HomePage.css"; 
 
+
 const HomePage = () => {
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
   const fadeInSoundRef = useRef(new Audio(fadeInSound)); // Create a new Audio object for fade-in sound
@@ -95,6 +96,13 @@ const HomePage = () => {
       >
         Sign In
       </button>
+      <button 
+        className="home-login-btn" 
+        onClick={() => handleButtonClick("/form")}
+      >
+        Form
+      </button>
+      
       <div className="cloud-container"></div> 
     </div>
   );

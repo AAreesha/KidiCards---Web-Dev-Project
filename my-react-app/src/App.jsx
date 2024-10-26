@@ -9,6 +9,7 @@ import EnglishCategoryPage from './pages/LearningPage/English_Learning';
 import UrduCategoryPage from './pages/LearningPage/Urdu_Learning';
 import AboutUs from './pages/AboutUs/AboutUs';
 import AuthDetails from './Auth/AuthDetails';
+import Form from './pages/AdminForm/Form'
 function App() {
 
 
@@ -18,6 +19,7 @@ function App() {
       
       <Routes>
         {/* Define routes and link them to the corresponding components */}
+        
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<Registration/>} />
         <Route path="/login" element={<Login/>} />
@@ -26,6 +28,7 @@ function App() {
         <Route path="/:categoryName/english" element={<EnglishCategoryPage />} />
         <Route path="/:categoryName/urdu" element={<UrduCategoryPage />} />
         <Route path="/aboutus" element={<AboutUs/>}/>
+        <Route path ="/form" element={<Form/>}/>
       </Routes>
       <AuthDetails/>
     </Router>

@@ -5,7 +5,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import mouse from "../../assets/mouse.mp3";
 import db  from '../../firebase'; // Import your Firestore instance
 import { doc, onSnapshot, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions
-
+import "./Language.css"
 const CategoryDetail = () => {
   const { categoryId } = useParams(); // Get the category from the URL
   const navigate = useNavigate(); // For programmatic navigation
