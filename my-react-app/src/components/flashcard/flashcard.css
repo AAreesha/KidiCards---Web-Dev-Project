@@ -1,0 +1,75 @@
+/* Flashcard.css */
+
+.flashcard-container {
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    margin-top: 100px;              
+}
+  
+.flashcard {
+    width: 250px;                 
+    height: 300px;                  
+    background-color: #FFCCBC; /* White background for the card */
+    border-radius: 15px; /* Rounded corners */
+    display: flex;
+    flex-direction: column;        
+    align-items: center;           
+    justify-content: space-between;  
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    transition: transform 0.5s, box-shadow 0.5s; /* Add shadow transition */
+}
+
+.flashcard:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.flashcard-back {
+    display: flex;
+    flex-direction: column;        
+    align-items: center;           
+    justify-content: space-between;  
+    height: 100%;                  
+}
+
+.flashcard img.flashcard-image {
+    max-width: 80%;
+    max-height: 60%;                 
+    border-radius: 10px; /* Rounded edges for images */
+    transition: transform 0.3s; /* Smooth transition for image effects */
+}
+
+.flashcard-text {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 3em; /* Adjust size as needed */
+    color: #333333;               
+    text-align: center;             
+    flex-grow: 1;                   
+    display: flex;                 
+    align-items: center;            
+    justify-content: center; /* Center text horizontally and vertically */
+    padding: 10px; /* Add padding for a softer look */
+    margin: 0; /* Remove any background */
+}
+
+.sound-icon {
+    width: 50px;                  /* Smaller width for the icon */
+    height: 50px;                 /* Smaller height for the icon */
+    cursor: pointer;
+    margin-top: 10px;             
+    display: block;               
+    margin-left: auto;            
+    margin-right: auto;           
+    transition: transform 0.3s; /* Smooth transition for icon effects */
+}
+
+.sound-icon:hover {
+    transform: scale(1.1); /* Slightly scale up on hover */
+}
+
+.flipped .flashcard-image {
+    display: none;
+}

@@ -85,6 +85,12 @@ const HomePage = () => {
     <div className='homepage-container'>
       <img src={logo} alt="home-logo" className="home-logo" />
       <button 
+        className="home-login-btn" 
+        onClick={() => handleButtonClick("/:categoryName/english/flashcards")}
+      >
+        Flashcard
+      </button>
+      <button 
         className="home-register-btn" 
         onClick={() => handleButtonClick("/register")}
       >
@@ -102,7 +108,7 @@ const HomePage = () => {
       >
         Form
       </button>
-      
+     
       <div className="cloud-container"></div> 
     </div>
   );

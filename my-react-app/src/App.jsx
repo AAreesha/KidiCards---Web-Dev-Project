@@ -10,6 +10,7 @@ import UrduCategoryPage from './pages/LearningPage/Urdu_Learning';
 import AboutUs from './pages/AboutUs/AboutUs';
 import AuthDetails from './Auth/AuthDetails';
 import Form from './pages/AdminForm/Form'
+import Flashcard from './pages/Learningmode/mode'
 function App() {
 
 
@@ -28,6 +29,8 @@ function App() {
         <Route path="/:categoryName/english" element={<EnglishCategoryPage />} />
         <Route path="/:categoryName/urdu" element={<UrduCategoryPage />} />
         <Route path="/aboutus" element={<AboutUs/>}/>
+        <Route path="/:categoryName/english/flashcards" element={<Flashcard />} /> 
+        <Route path="/:categoryName/urdu/flashcards" element={<Flashcard />} /> 
         <Route path ="/form" element={<Form/>}/>
       </Routes>
       <AuthDetails/>
