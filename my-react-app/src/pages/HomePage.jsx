@@ -74,6 +74,7 @@ const HomePage = () => {
   };
 
   // Create clouds on component mount
+
   useEffect(() => {
     createClouds(); 
     createsmallClouds();

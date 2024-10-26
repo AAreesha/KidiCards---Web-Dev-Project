@@ -8,12 +8,13 @@ import Language from './pages/LanguagePage/Language';
 import EnglishCategoryPage from './pages/LearningPage/English_Learning';
 import UrduCategoryPage from './pages/LearningPage/Urdu_Learning';
 import AboutUs from './pages/AboutUs/AboutUs';
+import AuthDetails from './Auth/AuthDetails';
 function App() {
 
 
   return (
     <Router>
-     
+    
       
       <Routes>
         {/* Define routes and link them to the corresponding components */}
@@ -21,11 +22,12 @@ function App() {
         <Route path="/register" element={<Registration/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/mainpage" element={<Mainpage/>} />
-        <Route exact path="/category/:categoryName" element={<Language />} />
+        <Route exact path="/category/:categoryId" element={<Language />} />
         <Route path="/:categoryName/english" element={<EnglishCategoryPage />} />
         <Route path="/:categoryName/urdu" element={<UrduCategoryPage />} />
         <Route path="/aboutus" element={<AboutUs/>}/>
       </Routes>
+      <AuthDetails/>
     </Router>
   );
 }

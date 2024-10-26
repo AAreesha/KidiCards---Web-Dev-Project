@@ -1,63 +1,80 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Language_SelectionCard from '../../components/Language/Language_Selection';
-import AnimalImage from '../../assets/CategoryIcons/Animals.png';
-import AlphabetsImage from '../../assets/CategoryIcons/alphabets.png';
-import FruitsImage from '../../assets/CategoryIcons/fruits.png';
-import NumbersImage from '../../assets/CategoryIcons/numbers.png';
-import VeggiesImage from '../../assets/CategoryIcons/veggies.png';
-import ColorsImage from '../../assets/CategoryIcons/colors.png';
-import './Language.css';
 import NavBar from '../../components/NavBar/NavBar';
-import mouse from "../../assets/mouse.mp3"
-
-// Translations for each category (with the same image for both English and Urdu)
-const categories = {
-  alphabets: { english: 'Alphabets', urdu: 'حروف', image: AlphabetsImage },
-  numbers: { english: 'Numbers', urdu: 'اعداد', image: NumbersImage },
-  fruits: { english: 'Fruits', urdu: 'پھل', image: FruitsImage },
-  animals: { english: 'Animals', urdu: 'جانور', image: AnimalImage },
-  vegetables: { english: 'Vegetables', urdu: 'سبزیاں', image: VeggiesImage },
-  colors: { english: 'Colors', urdu: 'رنگ', image: ColorsImage },
-};
+import mouse from "../../assets/mouse.mp3";
+import db  from '../../firebase'; // Import your Firestore instance
+import { doc, onSnapshot, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions
 
 const CategoryDetail = () => {
-  const { categoryName } = useParams(); // Get the category from the URL
+  const { categoryId } = useParams(); // Get the category from the URL
   const navigate = useNavigate(); // For programmatic navigation
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
-  const category = categories[categoryName.toLowerCase()]; // Fetch the right category object
+  const [category, setCategory] = useState({ english: '', urdu: '', image: '' }); // Initialize state
 
-  if (!category) {
-    return <div>Category not found</div>;
+  useEffect(() => {
+    const unsubscribe = onSnapshot(doc(db, "categories", categoryId), async (doc) => {
+      if (doc.exists()) {
+        const categoryData = doc.data(); // Get the main category document data
+
+        console.log(categoryData);
+        // Fetch English data
+        const englishCollection = collection(doc.ref, "english");
+        const englishDocs = await getDocs(englishCollection);
+        const englishName = englishDocs.docs[0]?.data()?.EnglishName || ''; // Get the English name
+
+        console.log(englishName)
+        // Fetch Urdu data
+        const urduCollection = collection(doc.ref, "urdu");
+        const urduDocs = await getDocs(urduCollection);
+        const urduName = urduDocs.docs[0]?.data()?.UrduName || ''; // Get the Urdu name
+
+        // Set the state with category details including English and Urdu names
+        setCategory({
+          english: englishName,
+          urdu: urduName,
+          image: categoryData.image || '' // Assuming there's an image in the main document
+        });
+      } else {
+        console.log("Category not found");
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, [categoryId]);
+
+  if (!category.english && !category.urdu) {
+    return <div>Loading category...</div>; // Display a loading message while fetching data
   }
+
   const handleLanguageSelection = (language) => {
     if (clickSoundRef.current) {
       clickSoundRef.current.currentTime = 0; // Reset sound to start
       clickSoundRef.current.play().then(() => {
         setTimeout(() => {
-          navigate(`/${categoryName.toLowerCase()}/${language}`); // Navigate to the appropriate page;
+          navigate(`/${categoryId}/${language}`); // Navigate to the appropriate page
         }, 500);
       }).catch(error => console.error("Sound playback failed", error));
     }
   };
 
-  
   return (
     <div className="language-detail-container">
-    <NavBar/>
-    <h1 className="languagepage-heading">Choose your language!</h1>
-    <div className="languagecategory-grid">
-      {/* Render the English card */}
-      <div onClick={() => handleLanguageSelection('english')}>
-        <Language_SelectionCard name={`${category.english}`} image={category.image} />
-      </div>
+      <NavBar />
+      <h1 className="languagepage-heading">Choose your language!</h1>
+      <div className="languagecategory-grid">
+        {/* Render the English card */}
+        <div onClick={() => handleLanguageSelection('english')}>
+          <Language_SelectionCard name={category.english} image={category.image} />
+        </div>
 
-      {/* Render the Urdu card */}
-      <div onClick={() => handleLanguageSelection('urdu')}>
-        <Language_SelectionCard name={`${category.urdu}`} image={category.image} />
+        {/* Render the Urdu card */}
+        <div onClick={() => handleLanguageSelection('urdu')}>
+          <Language_SelectionCard name={category.urdu} image={category.image} />
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 

@@ -1,17 +1,30 @@
 import { useState } from 'react';
 import "./Login.css"
 import Logo from "../../assets/logo.png"
+import {auth} from "../../firebase"
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here (e.g., call an API)
     console.log('Email:', email);
     console.log('Password:', password);
+    signInWithEmailAndPassword(auth,email,password)
+    .then((userCredential)=>{
+      console.log(userCredential)
+      navigate('/mainpage'); 
+
+    }).catch((error)=>{
+      console.error(error)
+      alert(error.message); // Show alert for user
+    })
     
 
   };
@@ -31,7 +44,7 @@ const Login = () => {
             type="email"
             id="email"
             value={email}
-            placeholder='Username'
+            placeholder='Email'
             onChange={(e) => setEmail(e.target.value)}
             required
            
@@ -58,12 +71,12 @@ const Login = () => {
       <p style={{ marginTop: '15px' }}>
         Dont have an account? <a href="/register">Register here</a>
       </p>
-      <p>
+      {/* <p>
           Go To Home Page<a href="/mainpage">Mainpage</a>
       </p>
       <p>
           Go To About Us<a href="/aboutus">About Us</a>
-      </p>
+      </p> */}
     </div>
   );
 };

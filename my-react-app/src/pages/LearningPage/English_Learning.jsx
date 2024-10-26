@@ -5,9 +5,17 @@ import Learn from '../../assets/LearningMode/Learn.png'
 import Test from '../../assets/LearningMode/Test.png'
 import Match from '../../assets/LearningMode/Match.png'
 import NavBar from '../../components/NavBar/NavBar';
-
+import { useEffect } from 'react';
+import db from "../../firebase"
+import {onSnapshot, collection} from "@firebase/firestore"
 
 const EnglishCategoryPage = () => {
+
+  useEffect(()=>{
+    onSnapshot(collection(db,"categories"),(snapshot) =>{
+      console.log(snapshot.docs.map(doc => doc.data()))
+    })
+  },[]);
   const location = useLocation(); // Get the current location
   const pathSegments = location.pathname.split('/'); // Split the pathname into segments
 

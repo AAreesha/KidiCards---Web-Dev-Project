@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { auth } from '../../firebase';
 import "./Registration.css";
 import Logo from "../../assets/logo.png";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ const Registration = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [notification, setNotification] = useState(''); // State for notification message
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,7 +24,6 @@ const Registration = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
-    
 
     const validateForm = () => {
         const newErrors = {};
@@ -39,12 +41,10 @@ const Registration = () => {
             newErrors.password = 'Password must contain at least one special character.';
         }
 
-
         // Email validation
         else if (!validateEmail(formData.email)) {
             newErrors.email = 'Invalid email format.';
         }
-
 
         return newErrors;
     };
@@ -57,6 +57,22 @@ const Registration = () => {
 
         if (Object.keys(formErrors).length === 0) {
             console.log('Form data:', formData);
+            createUserWithEmailAndPassword(auth, formData.email, formData.password)
+                .then((userCredential) => {
+                    // Successfully registered
+                    console.log('User registered:', userCredential);
+                    setNotification('Account registered successfully!'); // Set notification message
+                    setFormData({ username: '', email: '', dateOfBirth: '', password: '' }); // Clear form fields
+
+                    // Automatically hide notification after 3 seconds
+                    setTimeout(() => {
+                        setNotification('');
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.error('Registration error:', error);
+                    setErrors({ ...errors, registration: error.message }); // Update error state with registration error
+                });
         }
     };
 
@@ -92,7 +108,7 @@ const Registration = () => {
                         onChange={handleChange}
                         required
                     />
-                      {errors.email && <p className="error-message">{errors.email}</p>}
+                    {errors.email && <p className="error-message">{errors.email}</p>}
 
                     <label className="form-label" htmlFor="dateOfBirth">Date of Birth</label>
                     <input
@@ -125,11 +141,19 @@ const Registration = () => {
                         Sign Up with Google
                     </button>
 
+                    {errors.registration && <p className="error-message">{errors.registration}</p>} {/* Display registration error */}
+
                     <p>
                         Already have an account? <a href="/login">Login</a>
                     </p>
                 </form>
             </div>
+
+            {notification && (
+                <div className="notification">
+                    {notification}
+                </div>
+            )}
         </div>
     );
 };
