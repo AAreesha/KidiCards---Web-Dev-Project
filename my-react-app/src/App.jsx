@@ -8,7 +8,7 @@ import Language from './pages/LanguagePage/Language';
 import EnglishCategoryPage from './pages/LearningPage/English_Learning';
 import UrduCategoryPage from './pages/LearningPage/Urdu_Learning';
 import AboutUs from './pages/AboutUs/AboutUs';
-import AuthDetails from './Auth/AuthDetails';
+// import AuthDetails from './Auth/AuthDetails';
 import Form from './pages/AdminForm/Form'
 import Flashcard from './pages/Learningmode/mode'
 function App() {
@@ -32,7 +32,7 @@ function App() {
         <Route path="/:categoryName/:language/flashcards" element={<Flashcard />} /> 
         <Route path ="/form" element={<Form/>}/>
       </Routes>
-      <AuthDetails/>
+      {/* <AuthDetails/> */}
     </Router>
   );
 }

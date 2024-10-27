@@ -90,12 +90,12 @@ const HomePage = () => {
       >
         Flashcard
       </button>
-      <button 
+      {/* <button 
         className="home-register-btn" 
         onClick={() => handleButtonClick("/register")}
       >
         Sign Up
-      </button>
+      </button> */}
       <button 
         className="home-login-btn" 
         onClick={() => handleButtonClick("/login")}
