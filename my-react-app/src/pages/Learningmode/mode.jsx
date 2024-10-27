@@ -1,18 +1,46 @@
 // FlashcardPage.jsx
-import  { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Flashcard from '../../components/flashcard/flashcard';
-import './mode.css';
 import NavBar from '../../components/NavBar/NavBar';
-
-// Array of flashcards
-const flashcards = [
-  { id: 1, image: 'path-to-apple-image.png', text: 'Apple', audio: 'path-to-apple-audio.mp3' },
-  { id: 2, image: 'path-to-banana-image.png', text: 'Banana', audio: 'path-to-banana-audio.mp3' },
-  // Add more flashcards as needed
-];
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import './mode.css';
 
 const FlashcardPage = () => {
+  const { categoryName, language } = useParams(); // Extracting categoryName and language from URL
+  const [flashcards, setFlashcards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // Log the parameters to ensure they are defined
+    console.log("Category Name:", categoryName);
+    console.log("Language:", language);
+
+    const fetchFlashcards = async () => {
+      // Check if categoryName and language are defined
+      if (!categoryName || !language) {
+        console.error('Invalid categoryName or language:', { categoryName, language });
+        return; // Exit if either is undefined
+      }
+
+      const db = getFirestore();
+      // Define the correct collection reference based on the language
+      const collectionRef = collection(db, `categories/${categoryName}/${language}Flashcards`);
+
+      try {
+        const querySnapshot = await getDocs(collectionRef);
+        const fetchedFlashcards = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(), // Spread the document data
+        }));
+        setFlashcards(fetchedFlashcards);
+      } catch (error) {
+        console.error('Error fetching flashcards:', error);
+      }
+    };
+
+    fetchFlashcards();
+  }, [categoryName, language]);
 
   const nextFlashcard = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
@@ -24,12 +52,14 @@ const FlashcardPage = () => {
 
   return (
     <div className="flashcard-page">
-         <NavBar />
-      <Flashcard
-        image={flashcards[currentIndex].image}
-        text={flashcards[currentIndex].text}
-        audio={flashcards[currentIndex].audio}
-      />
+      <NavBar />
+      {flashcards.length > 0 && (
+        <Flashcard
+          image={flashcards[currentIndex].imageUrl} // Assuming your image field is imageUrl
+          text={flashcards[currentIndex].name} // Assuming your text field is name
+          audio={flashcards[currentIndex].soundUrl} // Assuming your audio field is soundUrl
+        />
+      )}
       <div className="button-container">
         <button onClick={prevFlashcard} disabled={currentIndex === 0}>
           Previous

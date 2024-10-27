@@ -29,8 +29,7 @@ function App() {
         <Route path="/:categoryName/english" element={<EnglishCategoryPage />} />
         <Route path="/:categoryName/urdu" element={<UrduCategoryPage />} />
         <Route path="/aboutus" element={<AboutUs/>}/>
-        <Route path="/:categoryName/english/flashcards" element={<Flashcard />} /> 
-        <Route path="/:categoryName/urdu/flashcards" element={<Flashcard />} /> 
+        <Route path="/:categoryName/:language/flashcards" element={<Flashcard />} /> 
         <Route path ="/form" element={<Form/>}/>
       </Routes>
       <AuthDetails/>

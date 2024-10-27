@@ -4,7 +4,7 @@ import Language_SelectionCard from '../../components/Language/Language_Selection
 import NavBar from '../../components/NavBar/NavBar';
 import mouse from "../../assets/mouse.mp3";
 import db  from '../../firebase'; // Import your Firestore instance
-import { doc, onSnapshot, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions
+import { doc, onSnapshot} from 'firebase/firestore'; // Import Firestore functions
 import "./Language.css"
 const CategoryDetail = () => {
   const { categoryId } = useParams(); // Get the category from the URL
@@ -13,34 +13,23 @@ const CategoryDetail = () => {
   const [category, setCategory] = useState({ english: '', urdu: '', image: '' }); // Initialize state
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(doc(db, "categories", categoryId), async (doc) => {
+    // Fetch the main document in the "categories" collection using the categoryId
+    const unsubscribe = onSnapshot(doc(db, "categories", categoryId), (doc) => {
       if (doc.exists()) {
         const categoryData = doc.data(); // Get the main category document data
 
-        console.log(categoryData);
-        // Fetch English data
-        const englishCollection = collection(doc.ref, "english");
-        const englishDocs = await getDocs(englishCollection);
-        const englishName = englishDocs.docs[0]?.data()?.EnglishName || ''; // Get the English name
-
-        console.log(englishName)
-        // Fetch Urdu data
-        const urduCollection = collection(doc.ref, "urdu");
-        const urduDocs = await getDocs(urduCollection);
-        const urduName = urduDocs.docs[0]?.data()?.UrduName || ''; // Get the Urdu name
-
-        // Set the state with category details including English and Urdu names
+        // Set the state directly from the main document fields
         setCategory({
-          english: englishName,
-          urdu: urduName,
-          image: categoryData.image || '' // Assuming there's an image in the main document
+          english: categoryData.englishName || '', // Access English name
+          urdu: categoryData.urduName || '', // Access Urdu name
+          image: categoryData.image || '' // Access image
         });
       } else {
         console.log("Category not found");
       }
     });
 
-    // Cleanup subscription on unmount
+    // Cleanup subscription on unmount or categoryId change
     return () => unsubscribe();
   }, [categoryId]);
 
