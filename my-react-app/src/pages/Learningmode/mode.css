@@ -16,12 +16,24 @@
   }
   
   .button-container {
+    margin-top: 20px; /* Space between flashcard and buttons */
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 300px;
+    gap: 10px; /* Space between buttons */
+}
+  .button-container button {
+    background: none; /* Remove default button styling */
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: none;
+    background-color: transparent;
+    
   }
   
+  .button-container button img {
+    width: 50px; /* Adjust size as needed */
+    height: 24px;
+  }
   button {
     padding: 8px 12px;
     font-size: 16px;

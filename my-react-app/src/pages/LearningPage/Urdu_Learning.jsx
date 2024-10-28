@@ -23,7 +23,7 @@ const UrduCategoryPage = () => {
       const unsubscribe = onSnapshot(doc(db, "categories", categoryName), (doc) => {
         if (doc.exists()) {
           const data = doc.data();
-          setCategoryName(data.name || "Category"); // Set category name or fallback to "Category"
+          setCategoryName(data.urduName || "Category"); // Set category name or fallback to "Category"
         } else {
           console.log("Category not found");
           setCategoryName("Category"); // Fallback if no document found
@@ -36,21 +36,7 @@ const UrduCategoryPage = () => {
   }, [categoryName]);
   
  
-  let output = ""
-  console.log("Category Name: ",categoryname)
-  if (categoryname === 'Vegetables') {
-    output = '! سبزیوں کی دُنیا میں خوش آمدید';
-  } else if (categoryname === 'Alphabets') {
-    output = '! حروف کی دنیا میں خوش آمدید';
-  } else if (categoryname === 'Numbers') {
-    output = '!اعداد کی دنیا میں خوش آمدید';
-  } else if (categoryname === 'Fruits') {
-    output = '! پھلوں کی دنیا میں خوش آمدید';
-  } else if (categoryname === 'Animals') {
-    output = '! جانوروں کی دنیا میں خوش آمدید';
-  } else if (categoryname === 'Colors') {
-    output = '! رنگوں کی دُنیا میں خوش آمدید';
-  }
+ 
   const handlelearningSelection = (language) => {
     if (clickSoundRef.current) {
       clickSoundRef.current.currentTime = 0; // Reset sound to start
@@ -65,7 +51,7 @@ const UrduCategoryPage = () => {
   return (
     <div className="Urducategory-page-container">
       <NavBar />
-      <h1 className="Urducard-heading">{output}</h1>
+      <h1 className="Urducard-heading"> {`!${categoryname} کی دُنیا میں خوش آمدید`}</h1>
       <div className="Urducard-column">
       <div onClick={() => handlelearningSelection(`/${categoryName}/urdu/flashcards`)}>
       <Learning name={`سیکھنا`} image={Learn}  />
