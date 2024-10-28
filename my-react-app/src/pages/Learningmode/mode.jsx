@@ -9,7 +9,7 @@ import forward from '../../assets/forward.png';
 import back from '../../assets/backward.png';
 
 const FlashcardPage = () => {
-  const { categoryName, language } = useParams(); // Extracting categoryName and language from URL
+  const { categoryName, language } = useParams();
   const [flashcards, setFlashcards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -46,30 +46,23 @@ const FlashcardPage = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + flashcards.length) % flashcards.length);
   };
 
-  // Reset the flip state by unflipping whenever the current index changes
-  useEffect(() => {
-    const flashcard = document.querySelector('.flashcard');
-    if (flashcard) {
-      flashcard.classList.remove('flipped');
-    }
-  }, [currentIndex]);
-
   return (
     <div className="flashcard-page">
       <NavBar />
       {flashcards.length > 0 && (
         <Flashcard
-          image={flashcards[currentIndex].imageUrl} // Assuming your image field is imageUrl
-          text={flashcards[currentIndex].name} // Assuming your text field is name
-          audio={flashcards[currentIndex].soundUrl} // Assuming your audio field is soundUrl
+          image={flashcards[currentIndex].imageUrl}
+          text={flashcards[currentIndex].name}
+          audio={flashcards[currentIndex].soundUrl}
+          resetFlip={currentIndex} // Pass currentIndex to reset flip state
         />
       )}
       <div className="button-container">
         <button onClick={prevFlashcard} disabled={currentIndex === 0}>
-          <img src={forward} alt="previous" />
+          <img src={back} alt="Previous" />
         </button>
         <button onClick={nextFlashcard} disabled={currentIndex === flashcards.length - 1}>
-          <img src={back} alt="Next" />
+          <img src={forward} alt="Next" />
         </button>
       </div>
     </div>

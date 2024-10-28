@@ -1,10 +1,10 @@
 // Flashcard.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Flashcard.css';
-import sound from '../../assets/sound.png'
+import sound from '../../assets/sound.png';
 
-const Flashcard = ({ image, text, audio }) => {
+const Flashcard = ({ image, text, audio, resetFlip }) => {
   const [flipped, setFlipped] = useState(false);
 
   const handleFlip = () => {
@@ -16,17 +16,22 @@ const Flashcard = ({ image, text, audio }) => {
     audioClip.play();
   };
 
+  // Reset flipped state whenever resetFlip changes
+  useEffect(() => {
+    setFlipped(false);
+  }, [resetFlip]);
+
   return (
     <div className={`flashcard ${flipped ? 'flipped' : ''}`} onClick={handleFlip}>
       {flipped ? (
         <div className="flashcard-back">
           <span className="flashcard-text">{text}</span>
           <img
-            src = {sound} // Replace with the path to your sound icon
+            src={sound}
             alt="Sound Icon"
             className="sound-icon"
             onClick={(e) => {
-              e.stopPropagation(); // Prevent flip on icon click
+              e.stopPropagation();
               playSound();
             }}
           />
@@ -42,6 +47,7 @@ Flashcard.propTypes = {
   image: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   audio: PropTypes.string.isRequired,
+  resetFlip: PropTypes.number.isRequired, // New prop
 };
 
 export default Flashcard;
