@@ -35,7 +35,7 @@ const NavBar = () => {
         {user?.email === 'abc@gmail.com' && (
           <a href="/form" className="navbar-link">Add Category</a>
         )}
-       
+          <a href="/mainpage" className="navbar-link">Main Page</a>
         <a href="/aboutus" className="navbar-link">About Us</a>
         <SearchIcon className="search-icon" />
 

@@ -20,10 +20,12 @@
     color:#c95a90;
     font-family: 'Lilita One', sans-serif;
 }
+
 .admin-form-category {
     display: flex;
     flex-direction: column;
     font-size: 15px;
+    color:rgb(138, 67, 79);
     
 }
 
@@ -49,7 +51,7 @@ label {
     margin-bottom: 10px; /* Space below inputs */
     padding: 10px; /* Padding for a better touch target */
     border-radius: 25px; /* Rounded corners */
-    border: 1px solid #584a4a; /* Border for inputs */
+    border: 1px solid #ac568762; /* Border for inputs */
     background-color: #ffffff;
     box-sizing: border-box; /* Include padding and border in the element's total width */
 }

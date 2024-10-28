@@ -84,18 +84,18 @@ const HomePage = () => {
   return (
     <div className='homepage-container'>
       <img src={logo} alt="home-logo" className="home-logo" />
-      <button 
+      {/* <button 
         className="home-login-btn" 
         onClick={() => handleButtonClick("/:categoryName/english/flashcards")}
       >
         Flashcard
-      </button>
-      {/* <button 
+      </button> */}
+      <button 
         className="home-register-btn" 
         onClick={() => handleButtonClick("/register")}
       >
         Sign Up
-      </button> */}
+      </button>
       <button 
         className="home-login-btn" 
         onClick={() => handleButtonClick("/login")}

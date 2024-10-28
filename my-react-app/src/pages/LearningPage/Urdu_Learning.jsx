@@ -23,7 +23,7 @@ const UrduCategoryPage = () => {
       const unsubscribe = onSnapshot(doc(db, "categories", categoryName), (doc) => {
         if (doc.exists()) {
           const data = doc.data();
-          setCategoryName(data.englishName || "Category"); // Set category name or fallback to "Category"
+          setCategoryName(data.name || "Category"); // Set category name or fallback to "Category"
         } else {
           console.log("Category not found");
           setCategoryName("Category"); // Fallback if no document found
@@ -35,7 +35,9 @@ const UrduCategoryPage = () => {
     }
   }, [categoryName]);
   
+ 
   let output = ""
+  console.log("Category Name: ",categoryname)
   if (categoryname === 'Vegetables') {
     output = '! سبزیوں کی دُنیا میں خوش آمدید';
   } else if (categoryname === 'Alphabets') {
