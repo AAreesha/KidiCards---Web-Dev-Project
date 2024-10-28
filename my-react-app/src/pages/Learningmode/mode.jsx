@@ -5,36 +5,29 @@ import Flashcard from '../../components/flashcard/Flashcard';
 import NavBar from '../../components/NavBar/NavBar';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import './mode.css';
-import forward from '../../assets/forward.png'
-import back from '../../assets/backward.png'
+import forward from '../../assets/forward.png';
+import back from '../../assets/backward.png';
 
 const FlashcardPage = () => {
   const { categoryName, language } = useParams(); // Extracting categoryName and language from URL
   const [flashcards, setFlashcards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [flipped, setFlipped] = useState(false); // Track flip state
 
   useEffect(() => {
-    // Log the parameters to ensure they are defined
-    console.log("Category Name:", categoryName);
-    console.log("Language:", language);
-
     const fetchFlashcards = async () => {
-      // Check if categoryName and language are defined
       if (!categoryName || !language) {
         console.error('Invalid categoryName or language:', { categoryName, language });
-        return; // Exit if either is undefined
+        return;
       }
 
       const db = getFirestore();
-      // Define the correct collection reference based on the language
       const collectionRef = collection(db, `categories/${categoryName}/${language}Flashcards`);
 
       try {
         const querySnapshot = await getDocs(collectionRef);
         const fetchedFlashcards = querySnapshot.docs.map(doc => ({
           id: doc.id,
-          ...doc.data(), // Spread the document data
+          ...doc.data(),
         }));
         setFlashcards(fetchedFlashcards);
       } catch (error) {
@@ -47,13 +40,19 @@ const FlashcardPage = () => {
 
   const nextFlashcard = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
-    setFlipped(false); // Reset flip state to false
   };
 
   const prevFlashcard = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + flashcards.length) % flashcards.length);
-    setFlipped(false); // Reset flip state to false
   };
+
+  // Reset the flip state by unflipping whenever the current index changes
+  useEffect(() => {
+    const flashcard = document.querySelector('.flashcard');
+    if (flashcard) {
+      flashcard.classList.remove('flipped');
+    }
+  }, [currentIndex]);
 
   return (
     <div className="flashcard-page">
@@ -63,8 +62,6 @@ const FlashcardPage = () => {
           image={flashcards[currentIndex].imageUrl} // Assuming your image field is imageUrl
           text={flashcards[currentIndex].name} // Assuming your text field is name
           audio={flashcards[currentIndex].soundUrl} // Assuming your audio field is soundUrl
-          flipped={flipped} // Pass flip state
-          setFlipped={setFlipped} // Pass setFlipped function
         />
       )}
       <div className="button-container">
