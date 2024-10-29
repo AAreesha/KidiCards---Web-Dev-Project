@@ -1,0 +1,23 @@
+/* FlashcardDemo.css */
+.test-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 200px;
+    background-image: url('../../assets/bg.png'); /* Replace with your image path */
+    background-size: cover;          /* Cover the entire page */
+    background-position: center;     /* Center the image */
+    background-repeat: no-repeat;    /* Do not repeat the image */
+}
+.Main-heading{
+    font-family: 'Lilita One', sans-serif;
+  font-size: 2em; /* Adjust size as needed */
+  font-weight: bold; /* Make the text bold */
+  text-align: center; /* Center the heading */
+  margin: 0; /* Remove all margins */
+  margin-bottom: 0px; /* Space between heading and grid */
+  color: #be749d; /* Set the text color */
+  text-transform: uppercase; /* Optional: Make the text uppercase */
+  
+}

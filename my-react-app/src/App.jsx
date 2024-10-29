@@ -11,6 +11,7 @@ import AboutUs from './pages/AboutUs/AboutUs';
 // import AuthDetails from './Auth/AuthDetails';
 import Form from './pages/AdminForm/Form'
 import Flashcard from './pages/Learningmode/mode'
+import Test from './pages/Testingmode/testmode'
 function App() {
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/:categoryName/urdu" element={<UrduCategoryPage />} />
         <Route path="/aboutus" element={<AboutUs/>}/>
         <Route path="/:categoryName/:language/flashcards" element={<Flashcard />} /> 
+        <Route path="/:categoryName/:language/testing" element={<Test />} /> 
         <Route path ="/form" element={<Form/>}/>
       </Routes>
       {/* <AuthDetails/> */}

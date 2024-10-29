@@ -54,7 +54,9 @@ const EnglishCategoryPage = () => {
       <div onClick={() => handlelearningSelection(`/${categoryName}/english/flashcards`)}>
         <Learning name={`Learn`} image={Learn} />
         </div>
+        <div  onClick={() => handlelearningSelection(`/${categoryName}/english/testing`)}>
         <Learning name={`Test`} image={Test} />
+        </div>
         <Learning name={`Matching`} image={Match} />
       </div>
     </div>
