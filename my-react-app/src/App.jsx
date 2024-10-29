@@ -12,6 +12,8 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import Form from './pages/AdminForm/Form'
 import Flashcard from './pages/Learningmode/mode'
 import Test from './pages/Testingmode/testmode'
+import ProfileIcon from './pages/ProfileIcon/ProfileIcon';
+
 function App() {
 
 
@@ -33,6 +35,8 @@ function App() {
         <Route path="/:categoryName/:language/flashcards" element={<Flashcard />} /> 
         <Route path="/:categoryName/:language/testing" element={<Test />} /> 
         <Route path ="/form" element={<Form/>}/>
+        <Route path ="/profile" element={<ProfileIcon/>}/>
+       
       </Routes>
       {/* <AuthDetails/> */}
     </Router>

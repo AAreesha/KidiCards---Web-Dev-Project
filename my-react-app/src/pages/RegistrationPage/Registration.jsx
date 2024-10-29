@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import { auth } from '../../firebase';
+import { auth } from '../../firebase'; // Ensure `db` is imported from firebase config
+import db from '../../firebase';
 import "./Registration.css";
 import Logo from "../../assets/logo.png";
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+
+import { doc, setDoc } from 'firebase/firestore'; // Import Firestore functions
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -14,6 +19,7 @@ const Registration = () => {
 
     const [errors, setErrors] = useState({});
     const [notification, setNotification] = useState(''); // State for notification message
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -49,30 +55,39 @@ const Registration = () => {
         return newErrors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formErrors = validateForm();
         setErrors(formErrors);
 
         if (Object.keys(formErrors).length === 0) {
-            console.log('Form data:', formData);
-            createUserWithEmailAndPassword(auth, formData.email, formData.password)
-                .then((userCredential) => {
-                    // Successfully registered
-                    console.log('User registered:', userCredential);
-                    setNotification('Account registered successfully!'); // Set notification message
-                    setFormData({ username: '', email: '', dateOfBirth: '', password: '' }); // Clear form fields
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+                const userId = userCredential.user.uid;
 
-                    // Automatically hide notification after 3 seconds
-                    setTimeout(() => {
-                        setNotification('');
-                    }, 3000);
-                })
-                .catch((error) => {
-                    console.error('Registration error:', error);
-                    setErrors({ ...errors, registration: error.message }); // Update error state with registration error
+                // Save user information to Firestore
+                await setDoc(doc(db, 'users', userId), {
+                    username: formData.username,
+                    email: formData.email,
+                    dateOfBirth: formData.dateOfBirth,
+                    scores: 0, // Initialize scores
+                    avatar: 0// Initialize avatar
                 });
+
+                setNotification('Account registered successfully!');
+                setFormData({ username: '', email: '', dateOfBirth: '', password: '' });
+
+                // Automatically hide notification after 3 seconds
+                setTimeout(() => {
+                   
+                    navigate('/main'); // Redirect to the main page
+                }, 3000);
+
+            } catch (error) {
+                console.error('Registration error:', error);
+                setErrors({ ...errors, registration: error.message });
+            }
         }
     };
 
@@ -141,7 +156,7 @@ const Registration = () => {
                         Sign Up with Google
                     </button>
 
-                    {errors.registration && <p className="error-message">{errors.registration}</p>} {/* Display registration error */}
+                    {errors.registration && <p className="error-message">{errors.registration}</p>}
 
                     <p>
                         Already have an account? <a href="/login">Login</a>
@@ -153,6 +168,7 @@ const Registration = () => {
                 <div className="notification">
                     {notification}
                 </div>
+
             )}
         </div>
     );

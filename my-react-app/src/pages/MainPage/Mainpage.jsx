@@ -51,6 +51,7 @@ const Mainpage = () => {
    
     <div className="mainpage-container">
       <NavBar/>
+    
       <h1 className="mainpage-heading">Explore, Learn, and Play!</h1>
       <div className="category-grid">
       {categories.map((category, index) => (
@@ -62,7 +63,7 @@ const Mainpage = () => {
           <CategoryCard name={category.name} image={category.image} />
         </div>
       ))}
-
+     
       </div>
     </div>
   

@@ -46,4 +46,50 @@
     /* Specific class targeting the MUI Avatar component */
   
 }
+.navbar-dropdown-icon {
+    width: 60px !important;  
+    height: 60px !important;
+    margin-left: 60px;
+    /* Specific class targeting the MUI Avatar component */
+  
+}
 
+
+/* Profile dropdown */
+.profile-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-menu {
+    width: 200px;
+    position: absolute;
+   
+    right: 10px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    list-style: none;
+    padding: 10px;
+  }
+  
+  .dropdown-menu li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .dropdown-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+  }
+  

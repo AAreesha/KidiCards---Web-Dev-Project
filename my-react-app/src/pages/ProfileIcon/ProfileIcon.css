@@ -1,0 +1,36 @@
+.avatar-selection {
+    text-align: center;
+    height: 100vh;
+    background-color:#fff6f6;
+    margin-top: 150px;
+  }
+
+ 
+
+  .avatar-select {
+    
+    font-size: 50px;
+    color: rgb(69, 115, 189);
+    font-family: 'Lilita One', sans-serif;;
+  }
+  
+  .avatar-grid {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .avatar-option {
+    margin-top: 90px;
+    cursor: pointer;
+    width: 200px !important;
+    height: 200px !important;
+    transition: transform 0.2s;
+  }
+  
+  .avatar-option:hover {
+    transform: scale(1.1);
+  }
+  
