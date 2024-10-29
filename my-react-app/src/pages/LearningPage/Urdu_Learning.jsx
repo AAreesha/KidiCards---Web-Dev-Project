@@ -59,7 +59,9 @@ const UrduCategoryPage = () => {
       <div  onClick={() => handlelearningSelection(`/${categoryName}/urdu/testing`)}>
         <Learning name={`ٹیسٹ`} image={Test} />
       </div>
+      <div  onClick={() => handlelearningSelection(`/${categoryName}/urdu/matching`)}>
         <Learning name={`ملاپ`} image={Match} />
+      </div>
       </div>
     </div>
   );

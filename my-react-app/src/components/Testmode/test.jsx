@@ -28,14 +28,14 @@ const TestContainer = ({ image, audio, options, onOptionClick, selectedOption, i
           let optionClass = '';
 
           if (isSelected) {
-            optionClass = isCorrect ? 'correct' : 'incorrect'; // Apply correct or incorrect class
+            optionClass = isCorrect ? 'correct' : 'incorrect'; 
           }
 
           return (
             <div 
               key={index} 
-              className={`option-box ${optionClass}`} // Apply the dynamic class
-              onClick={() => onOptionClick(option)} // Handle option click
+              className={`option-box ${optionClass}`} 
+              onClick={() => onOptionClick(option)} 
             >
               {option}
             </div>
@@ -50,9 +50,9 @@ TestContainer.propTypes = {
   image: PropTypes.string.isRequired,
   audio: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onOptionClick: PropTypes.func.isRequired, // Prop for handling option clicks
-  selectedOption: PropTypes.string, // Prop for the selected option
-  isCorrect: PropTypes.bool, // Prop for correctness state
+  onOptionClick: PropTypes.func.isRequired, 
+  selectedOption: PropTypes.string, 
+  isCorrect: PropTypes.bool, 
 };
 
 export default TestContainer;
