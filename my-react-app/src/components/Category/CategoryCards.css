@@ -35,3 +35,25 @@
   font-size: 22px; /* Optionally increase font size for better visibility */
   margin-top: 10px;
 }
+
+.delete-category {
+  margin-top: 10px;
+  background-color: rgb(199, 36, 36);        /* Set background color to red */
+  color: white;                 /* Set text color to white for contrast */
+  border: none;                 /* Remove default border */
+  border-radius: 4px;          /* Add slight rounding to corners */
+  padding: 8px 12px;           /* Add padding for a better click area */
+  cursor: pointer;              /* Change cursor to pointer on hover */
+  font-weight: bold;            /* Make the text bold */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+.delete-icon {   /* Add margin to the right */
+  position: relative;      /* Allow for positioning adjustments */
+  top: 5px;   
+  /* Move the icon down slightly */
+}
+
+
+.delete-category:hover {
+  background-color: darkred;    /* Darker red on hover */
+}

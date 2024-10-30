@@ -1,9 +1,8 @@
-// FlashcardPage.jsx
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Flashcard from '../../components/flashcard/Flashcard';
 import NavBar from '../../components/NavBar/NavBar';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, onSnapshot, doc, updateDoc } from 'firebase/firestore'; // Import onSnapshot
 import './mode.css';
 import forward from '../../assets/forward.png';
 import back from '../../assets/backward.png';
@@ -12,38 +11,56 @@ const FlashcardPage = () => {
   const { categoryName, language } = useParams();
   const [flashcards, setFlashcards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [editMode, setEditMode] = useState(false); // State to manage edit mode
+  const [newFlashcardName, setNewFlashcardName] = useState(''); // State for new name
 
   useEffect(() => {
-    const fetchFlashcards = async () => {
-      if (!categoryName || !language) {
-        console.error('Invalid categoryName or language:', { categoryName, language });
-        return;
+    const db = getFirestore();
+    const collectionRef = collection(db, `categories/${categoryName}/${language}Flashcards`);
+
+    // Set up a real-time listener
+    const unsubscribe = onSnapshot(collectionRef, (querySnapshot) => {
+      const fetchedFlashcards = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setFlashcards(fetchedFlashcards);
+      
+      // Update newFlashcardName to the first flashcard's name after fetching
+      if (fetchedFlashcards.length > 0) {
+        setNewFlashcardName(fetchedFlashcards[0].name);
       }
+    });
 
-      const db = getFirestore();
-      const collectionRef = collection(db, `categories/${categoryName}/${language}Flashcards`);
-
-      try {
-        const querySnapshot = await getDocs(collectionRef);
-        const fetchedFlashcards = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setFlashcards(fetchedFlashcards);
-      } catch (error) {
-        console.error('Error fetching flashcards:', error);
-      }
-    };
-
-    fetchFlashcards();
+    return () => unsubscribe(); // Cleanup listener on unmount
   }, [categoryName, language]);
 
   const nextFlashcard = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
+    setNewFlashcardName(flashcards[(currentIndex + 1) % flashcards.length].name); // Update input value for next card
   };
 
   const prevFlashcard = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + flashcards.length) % flashcards.length);
+    setNewFlashcardName(flashcards[(currentIndex - 1 + flashcards.length) % flashcards.length].name); // Update input value for previous card
+  };
+
+  const handleEdit = () => {
+    setEditMode(true);
+    setNewFlashcardName(flashcards[currentIndex].name); // Set the current flashcard name for editing
+  };
+
+  const handleUpdateFlashcard = async () => {
+    const db = getFirestore();
+    const flashcardRef = doc(db, `categories/${categoryName}/${language}Flashcards`, flashcards[currentIndex].id);
+    
+    try {
+      await updateDoc(flashcardRef, { name: newFlashcardName }); // Update the flashcard name
+      console.log(`Flashcard name updated to: ${newFlashcardName}`);
+      setEditMode(false); // Exit edit mode
+    } catch (error) {
+      console.error('Error updating flashcard:', error);
+    }
   };
 
   return (
@@ -65,6 +82,19 @@ const FlashcardPage = () => {
           <img src={forward} alt="Next" />
         </button>
       </div>
+      {editMode ? (
+        <div className="edit-container">
+          <input
+            type="text"
+            value={newFlashcardName}
+            onChange={(e) => setNewFlashcardName(e.target.value)} // Update new flashcard name state
+          />
+          <button onClick={handleUpdateFlashcard}>Update Flashcard Name</button>
+          <button onClick={() => setEditMode(false)}>Cancel</button>
+        </div>
+      ) : (
+        <button onClick={handleEdit}>Edit Flashcard Name</button>
+      )}
     </div>
   );
 };

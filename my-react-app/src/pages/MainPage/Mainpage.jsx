@@ -60,7 +60,7 @@ const Mainpage = () => {
           className="category-link"
           onClick={() => handleButtonClick(`/category/${category.id}`)} // Call handleButtonClick with the path
         >
-          <CategoryCard name={category.name} image={category.image} />
+          <CategoryCard id={category.id} name={category.name} image={category.image} />
         </div>
       ))}
      
