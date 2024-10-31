@@ -1,0 +1,80 @@
+/* Page Layout */
+.score-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-image: url('../../assets/bg.png'); 
+    min-height: 100vh;
+}
+
+/* Heading */
+.score-heading {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Table Styles */
+.score-table {
+    margin-top: 100px;
+    width: 80%;
+    max-width: 800px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table Header */
+.score-table thead tr {
+    background-color: pink;
+    color: #fff;
+    font-weight: bold;
+}
+
+.score-table th, .score-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table Rows */
+.score-table tbody tr:nth-child(even) {
+    background-color: rgb(224, 200, 204);
+}
+
+.score-table tbody tr:hover {
+    background-color: #e0f7ff;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .score-table, .score-table thead, .score-table tbody, .score-table th, .score-table td, .score-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .score-table thead tr {
+        display: none;
+    }
+
+    .score-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .score-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}

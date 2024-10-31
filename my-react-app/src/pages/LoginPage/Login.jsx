@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import "./Login.css"
 import Logo from "../../assets/logo.png"
 import {auth} from "../../firebase"
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import mouse from "../../assets/mouse.mp3";
 
 
 const Login = () => {
+  const clickSoundRef = useRef(new Audio(mouse)); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    clickSoundRef.current.play()
     // Handle login logic here (e.g., call an API)
     console.log('Email:', email);
     console.log('Password:', password);

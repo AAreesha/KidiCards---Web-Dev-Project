@@ -1,4 +1,3 @@
-import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
 import './NavBar.css'; // Link to the CSS file for styling
 import Logo from "../../assets/navbar_logo.png";
@@ -109,7 +108,6 @@ const NavBar = () => {
         )}
         <a href="/mainpage" className="navbar-link">Main Page</a>
         <a href="/aboutus" className="navbar-link">About Us</a>
-        <SearchIcon className="search-icon" />
 
         {/* Profile Icon */}
         <div className="profile-icon-wrapper" ref={dropdownRef}>
@@ -129,6 +127,7 @@ const NavBar = () => {
                 className="navbar-dropdown-icon"
               />
               {user && <li className="navbar-user-email">Hi {username}!</li>}
+              <li><a onClick={() => navigate('/score')}>View Score</a></li>
               <li><a onClick={() => navigate('/profile')}>Change Avatar</a></li>
               {user && (
                 <li><button onClick={handleSignOut} className="sign-out-button">Sign Out</button></li>

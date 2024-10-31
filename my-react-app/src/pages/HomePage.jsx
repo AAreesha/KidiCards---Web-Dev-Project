@@ -1,18 +1,15 @@
-import { useEffect, useRef, useState } from 'react'; 
+import { useEffect, useRef } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
 import cloudImage from "../assets/cloud.png"; 
 import cloudImage2 from "../assets/cloud2.png"; 
 import logo from "../assets/navbar_logo.png"; 
 import mouse from "../assets/mouse.mp3"; 
-import fadeInSound from "../assets/entrysound.mp3"; 
 import "./HomePage.css"; 
 
 
 const HomePage = () => {
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
-  const fadeInSoundRef = useRef(new Audio(fadeInSound)); // Create a new Audio object for fade-in sound
   const navigate = useNavigate(); 
-  const [soundPlayed, setSoundPlayed] = useState(false); 
 
   // Function to handle button click and play mouse click sound
   const handleButtonClick = (path) => {
@@ -26,25 +23,6 @@ const HomePage = () => {
     }
   };
 
-  useEffect(() => {
-    // Mouse move event listener to play the fade-in sound only once
-    const handleMouseMove = () => {
-      if (!soundPlayed && fadeInSoundRef.current) {
-        fadeInSoundRef.current.currentTime = 0; // Reset sound to start
-        fadeInSoundRef.current.play().then(() => {
-          setSoundPlayed(true); // Ensure it only plays once
-        }).catch(error => console.error("Fade-in sound playback failed", error));
-      }
-    };
-
-    // Attach the mousemove event listener
-    window.addEventListener('mousemove', handleMouseMove);
-
-    // Cleanup the event listener on unmount
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [soundPlayed]); 
 
   // Function to create clouds
   const createClouds = () => {
@@ -84,12 +62,6 @@ const HomePage = () => {
   return (
     <div className='homepage-container'>
       <img src={logo} alt="home-logo" className="home-logo" />
-      {/* <button 
-        className="home-login-btn" 
-        onClick={() => handleButtonClick("/:categoryName/english/flashcards")}
-      >
-        Flashcard
-      </button> */}
       <button 
         className="home-register-btn" 
         onClick={() => handleButtonClick("/register")}
@@ -102,12 +74,7 @@ const HomePage = () => {
       >
         Sign In
       </button>
-      <button 
-        className="home-login-btn" 
-        onClick={() => handleButtonClick("/form")}
-      >
-        Form
-      </button>
+
      
       <div className="cloud-container"></div> 
     </div>

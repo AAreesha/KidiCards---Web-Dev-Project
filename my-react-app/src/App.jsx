@@ -13,7 +13,8 @@ import Form from './pages/AdminForm/Form'
 import Flashcard from './pages/Learningmode/mode'
 import Test from './pages/Testingmode/testmode'
 import ProfileIcon from './pages/ProfileIcon/ProfileIcon';
-import Match from './pages/Matching/matchmode'
+import Match from './pages/Matching/matchmode';
+import Score from './pages/Scores/scores';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/:categoryName/:language/testing" element={<Test />} /> 
         <Route path="/:categoryName/:language/matching" element={<Match />} />
         <Route path ="/form" element={<Form/>}/>
+        <Route path ="/score" element={<Score/>}/>
         <Route path ="/profile" element={<ProfileIcon/>}/>
        
       </Routes>

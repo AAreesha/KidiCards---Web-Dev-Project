@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { auth } from '../../firebase'; // Ensure `db` is imported from firebase config
 import db from '../../firebase';
 import "./Registration.css";
 import Logo from "../../assets/logo.png";
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-
-
-import { doc, setDoc } from 'firebase/firestore'; // Import Firestore functions
+import mouse from "../../assets/mouse.mp3";
+import { doc, setDoc, getDocs, collection } from 'firebase/firestore'; // Import Firestore functions
 
 const Registration = () => {
+    const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -20,6 +20,22 @@ const Registration = () => {
     const [errors, setErrors] = useState({});
     const [notification, setNotification] = useState(''); // State for notification message
     const navigate = useNavigate(); // Initialize useNavigate
+
+    useEffect(() => {
+        // Fetch categories on mount
+        const fetchCategories = async () => {
+            try {
+                const categoriesSnapshot = await getDocs(collection(db, 'categories'));
+                const categories = categoriesSnapshot.docs.map(doc => doc.id);
+                setCategories(categories);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+        fetchCategories();
+    }, []);
+
+    const [categories, setCategories] = useState([]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -57,7 +73,7 @@ const Registration = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        clickSoundRef.current.play()
         const formErrors = validateForm();
         setErrors(formErrors);
 
@@ -66,13 +82,23 @@ const Registration = () => {
                 const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
                 const userId = userCredential.user.uid;
 
+                // Prepare initial scores data with all categories set to 0 for both English and Urdu
+                const initialScores = {
+                    english: {},
+                    urdu: {},
+                };
+                categories.forEach(category => {
+                    initialScores.english[category] = 0;
+                    initialScores.urdu[category] = 0;
+                });
+
                 // Save user information to Firestore
                 await setDoc(doc(db, 'users', userId), {
                     username: formData.username,
                     email: formData.email,
                     dateOfBirth: formData.dateOfBirth,
-                    scores: 0, // Initialize scores
-                    avatar: 0// Initialize avatar
+                    scores: initialScores, // Set initial scores with categories
+                    avatar: 0 // Initialize avatar
                 });
 
                 setNotification('Account registered successfully!');
@@ -80,8 +106,7 @@ const Registration = () => {
 
                 // Automatically hide notification after 3 seconds
                 setTimeout(() => {
-                   
-                    navigate('/main'); // Redirect to the main page
+                    navigate('/mainpage'); // Redirect to the main page
                 }, 3000);
 
             } catch (error) {
