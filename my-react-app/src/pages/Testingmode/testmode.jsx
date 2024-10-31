@@ -109,15 +109,15 @@ const TestPage = () => {
     if (isCorrectAnswer) {
       setIsCorrect(true);
       setScore(prevScore => prevScore + 1);
+      if (testedFlashcards.size + 1 === flashcards.length) {
+        setShowConfetti(true); // Show confetti after the last question
+      }
+    
     } else {
       setIsCorrect(false);
     }
   
-    // Check if this was the last question answered
-    if (testedFlashcards.size + 1 === flashcards.length) {
-      setShowConfetti(true); // Show confetti after the last question
-    }
-  
+    
     setTimeout(() => {
       getNextFlashcard();
     }, 1000);
