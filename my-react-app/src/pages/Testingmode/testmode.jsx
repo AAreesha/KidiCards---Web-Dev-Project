@@ -16,6 +16,7 @@ const TestPage = () => {
   const [testedFlashcards, setTestedFlashcards] = useState(new Set());
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const [showConfetti, setShowConfetti] = useState(false);
   const navigate = useNavigate();
   const [windowDimensions, setWindowDimensions] = useState({
@@ -98,6 +99,7 @@ const TestPage = () => {
     setOptions([newFlashcard.name, ...otherOptions].sort(() => Math.random() - 0.5));
     setSelectedOption(null);
     setIsCorrect(null);
+    setNotification({ message: '', type: '' }); // Reset notification
   };
 
   const handleOptionClick = (selectedOption) => {
@@ -109,17 +111,21 @@ const TestPage = () => {
     if (isCorrectAnswer) {
       setIsCorrect(true);
       setScore(prevScore => prevScore + 1);
+      setNotification({ message: 'Great job! 🎉', type: 'success' });
       if (testedFlashcards.size + 1 === flashcards.length) {
         setShowConfetti(true); // Show confetti after the last question
+       
       }
     
     } else {
       setIsCorrect(false);
+      setNotification({ message: 'Oh no, try again! 😢', type: 'error' });
     }
   
     
     setTimeout(() => {
       getNextFlashcard();
+      setNotification({ message: '', type: '' });
     }, 1000);
   };
   
@@ -163,7 +169,12 @@ const TestPage = () => {
           isCorrect={isCorrect}
         />
       )}
-      <button onClick={handleDone} disabled={isDoneButtonDisabled}>
+      {notification.message && (
+        <div className={`notification ${notification.type}`}>
+          {notification.message}
+        </div>
+      )}
+      <button className = "done-button" onClick={handleDone} disabled={isDoneButtonDisabled}>
         Done
       </button>
       {showConfetti && (

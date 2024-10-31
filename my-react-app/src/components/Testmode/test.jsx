@@ -11,11 +11,11 @@ const TestContainer = ({ image, audio, options, onOptionClick, selectedOption, i
   return (
     <div className="test-container">
       <div className="main-flashcard">
-        <img src={image} alt="Flashcard" className="flashcard-image" loading="lazy" />
+        <img src={image} alt="Flashcard" className="flashcard-image-test" loading="lazy" />
         <img 
           src={soundIcon} 
           alt="Play Sound" 
-          className="sound-icon" 
+          className="sound-icon-test" 
           onClick={(e) => {
             e.stopPropagation();
             playSound();
@@ -34,7 +34,7 @@ const TestContainer = ({ image, audio, options, onOptionClick, selectedOption, i
           return (
             <div 
               key={index} 
-              className={`option-box ${optionClass}`} 
+              className={`option-box-2 ${optionClass}`} 
               onClick={() => onOptionClick(option)} 
             >
               {option}

@@ -9,12 +9,12 @@ const MatchContainer = ({ images, onCardClick }) => {
                 {images.slice(0, 5).map((image, index) => ( 
                     <div
                         key={index}
-                        className={`flashcard ${image.selected ? 'selected' : ''} ${image.matched ? 'matched' : ''}`}
+                        className={`flashcard-match ${image.selected ? 'selected' : ''} ${image.matched ? 'matched' : ''}`}
                         onClick={() => onCardClick(index)}
                     >
                         <div className="flashcard-content">
                             {image.matched || image.selected ? ( 
-                                <img className="flashcard-image" src={image.src} alt="flashcard" />
+                                <img className="flashcard-image-match" src={image.src} alt="flashcard" />
                             ) : (
                                 <div className="card-back">?</div> 
                             )}
@@ -26,12 +26,12 @@ const MatchContainer = ({ images, onCardClick }) => {
                 {images.slice(5).map((image, index) => ( 
                     <div
                         key={index + 5} 
-                        className={`flashcard ${image.selected ? 'selected' : ''} ${image.matched ? 'matched' : ''}`}
+                        className={`flashcard-match ${image.selected ? 'selected' : ''} ${image.matched ? 'matched' : ''}`}
                         onClick={() => onCardClick(index + 5)} 
                     >
                         <div className="flashcard-content">
                             {image.matched || image.selected ? ( 
-                                <img className="flashcard-image" src={image.src} alt="flashcard" />
+                                <img className="flashcard-image-match" src={image.src} alt="flashcard" />
                             ) : (
                                 <div className="card-back">?</div>
                             )}

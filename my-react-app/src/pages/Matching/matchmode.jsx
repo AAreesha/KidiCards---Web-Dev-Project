@@ -92,7 +92,7 @@ const MatchingPage = () => {
         }))}
         onCardClick={handleCardClick}
       />
-      <button onClick={handleDone} disabled={!isDone}>
+      <button className="done-match" onClick={handleDone} disabled={!isDone}>
         Done
       </button>
       {isDone && <Confetti />}

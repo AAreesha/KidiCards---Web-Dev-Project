@@ -4,8 +4,11 @@ import Flashcard from '../../components/flashcard/Flashcard';
 import NavBar from '../../components/NavBar/NavBar';
 import { getFirestore, collection, onSnapshot, doc, updateDoc } from 'firebase/firestore'; // Import onSnapshot
 import './mode.css';
-import forward from '../../assets/forward.png';
-import back from '../../assets/backward.png';
+import {auth} from  '../../firebase.jsx';
+
+// import forward from '../../assets/forward.png';
+// import back from '../../assets/backward.png';
+import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 
 const FlashcardPage = () => {
   const { categoryName, language } = useParams();
@@ -13,7 +16,8 @@ const FlashcardPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [editMode, setEditMode] = useState(false); // State to manage edit mode
   const [newFlashcardName, setNewFlashcardName] = useState(''); // State for new name
-
+  const [user, setUser] = useState(null); // State to manage authenticated user
+  const [notification, setNotification] = useState(''); // State for notification message
   useEffect(() => {
     const db = getFirestore();
     const collectionRef = collection(db, `categories/${categoryName}/${language}Flashcards`);
@@ -34,6 +38,19 @@ const FlashcardPage = () => {
 
     return () => unsubscribe(); // Cleanup listener on unmount
   }, [categoryName, language]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user); // Set the authenticated user
+      } else {
+        setUser(null); // Reset user if not authenticated
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
 
   const nextFlashcard = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
@@ -58,14 +75,24 @@ const FlashcardPage = () => {
       await updateDoc(flashcardRef, { name: newFlashcardName }); // Update the flashcard name
       console.log(`Flashcard name updated to: ${newFlashcardName}`);
       setEditMode(false); // Exit edit mode
+      setNotification('Flashcard name updated successfully!'); // Set notification message
+      setTimeout(() => {
+        setNotification(''); // Clear notification after 3 seconds
+      }, 2000);
     } catch (error) {
       console.error('Error updating flashcard:', error);
+      setNotification('Failed to update flashcard name.'); // Set error notification
+      setTimeout(() => {
+      setNotification(''); // Clear notification after 3 seconds
+      }, 2000);
     }
   };
 
+  const isAdmin = user?.email === 'abc@gmail.com'; // Check if user is admin
   return (
     <div className="flashcard-page">
       <NavBar />
+      {notification && <div className="notification">{notification}</div>} {/* Notification Message */}
       {flashcards.length > 0 && (
         <Flashcard
           image={flashcards[currentIndex].imageUrl}
@@ -76,25 +103,36 @@ const FlashcardPage = () => {
       )}
       <div className="button-container">
         <button onClick={prevFlashcard} disabled={currentIndex === 0}>
-          <img src={back} alt="Previous" />
+        <div className='icon-circle'>
+         <FiArrowLeft size={40} alt ="Previous" /> 
+        </div>
+
         </button>
         <button onClick={nextFlashcard} disabled={currentIndex === flashcards.length - 1}>
-          <img src={forward} alt="Next" />
+        <div className="icon-circle">
+          <FiArrowRight size={40} alt="Next" />
+        </div>
         </button>
       </div>
-      {editMode ? (
-        <div className="edit-container">
-          <input
-            type="text"
-            value={newFlashcardName}
-            onChange={(e) => setNewFlashcardName(e.target.value)} // Update new flashcard name state
-          />
-          <button onClick={handleUpdateFlashcard}>Update Flashcard Name</button>
-          <button onClick={() => setEditMode(false)}>Cancel</button>
-        </div>
-      ) : (
-        <button onClick={handleEdit}>Edit Flashcard Name</button>
-      )}
+      {isAdmin &&
+      <>
+            {editMode ? (
+              <div className="edit-container">
+                <input
+                  type="text"
+                  value={newFlashcardName}
+                  onChange={(e) => setNewFlashcardName(e.target.value)} // Update new flashcard name state
+                />
+                <button onClick={handleUpdateFlashcard}>Update Flashcard Name</button>
+                <button onClick={() => setEditMode(false)}>Cancel</button>
+              </div>
+            ) : (
+              <button onClick={handleEdit}>Edit Flashcard Name</button>
+            )}
+      
+      </>
+      }
+
     </div>
   );
 };

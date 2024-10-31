@@ -4,6 +4,8 @@ import Profileicon1 from "../../assets/boy.png"; //2
 import Profileicon2 from "../../assets/boy2.png"; //3
 import Profileicon3 from "../../assets/girl.png"; //4
 import './ProfileIcon.css'; // Custom CSS for styling
+import {useState} from  'react'; // Import useState hook for state managemen
+
 import { auth } from '../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import db from '../../firebase'; // Import your Firestore configuration
@@ -17,6 +19,8 @@ const avatars = [
 ];
 
 const ProfileIcon = () => {
+
+  const [notification, setNotification] = useState({ message: '', isVisible: false });
   const handleAvatarSelect = async (avatarId) => {
     if (auth.currentUser) {
       const userId = auth.currentUser.uid; // Get the current user's ID
@@ -24,7 +28,11 @@ const ProfileIcon = () => {
         // Update the user's avatar ID in Firestore
         await setDoc(doc(db, 'users', userId), { avatarId }, { merge: true });
 
-        alert('Avatar updated successfully!');
+       // alert('Avatar updated successfully!');
+       setNotification({ message: 'Avatar updated successfully!', isVisible: true });
+       setTimeout(() => {
+        setNotification({ message: '', isVisible: false });
+      }, 3000);
       } catch (error) {
         console.error("Error updating avatar:", error);
       }
@@ -46,7 +54,14 @@ const ProfileIcon = () => {
               onClick={() => handleAvatarSelect(avatar.id)}  
             />
           ))}
+          
+     
         </div>
+        {notification.isVisible && (
+         <div className="notification success">
+         {notification.message}
+          </div>
+        )}
       </div>
     </div>
   );

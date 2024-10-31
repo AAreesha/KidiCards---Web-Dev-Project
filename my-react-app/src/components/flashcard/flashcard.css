@@ -8,9 +8,9 @@
 }
   
 .flashcard {
-    width: 250px;                 
-    height: 300px;                  
-    background-color: #fdfdfd; /* White background for the card */
+    width: 500px !important;                 
+    height: 400px !important;                  
+    background-color: #ffffff; /* White background for the card */
     border-radius: 15px; /* Rounded corners */
     display: flex;
     flex-direction: column;        
@@ -36,34 +36,40 @@
 }
 
 .flashcard img.flashcard-image {
-    max-width: 100%;
-    max-height: 100%;                 
+    width: 100%;
+    height: auto;    
+    max-height: 70%;      
     border-radius: 10px; /* Rounded edges for images */
     transition: transform 0.3s; /* Smooth transition for image effects */
-    margin: 0 auto; /* Center the image horizontally */
+    margin: 10px auto 0; /* Center the image horizontally */
     display: block; /* Ensure the image is treated as a block element */
 }
 
 .flashcard-text {
     font-family: 'Lilita One', sans-serif;
-    font-size: 5em; /* Adjust size as needed */
-
-    color: #333333;               
-    text-align: center;             
-    flex-grow: 1;                   
-    display: flex;                 
-    align-items: center;           
-    justify-content: center; /* Center text horizontally and vertically */
-    padding: 10px; /* Add padding for a softer look */
-    margin-top: 60px;
+    font-size: 6em; /* Adjust size for better fit */
+    color: #333333;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    overflow: hidden;           /* Ensures text does not overflow the container */
+    text-overflow: ellipsis;    /* Adds ellipsis for overflow text */
+    word-wrap: break-word;      /* Breaks words if they are too long */
+    height: 100%;               /* Takes up the entire height of the flashcard */
+    box-sizing: border-box;     /* Ensures padding is within height */
 }
 
+
 .sound-icon {
-    width: 70px;                  /* Smaller width for the icon */
-    height: 50px;                 /* Smaller height for the icon */
+    width: 150px !important;                   /* Smaller width for the icon */
+    height: 90px !important;                 /* Smaller height for the icon */
     cursor: pointer;
-    margin-top: 10px;   
-    margin-bottom: 20px;          
+   
+    margin-bottom: 10px !important;          
     display: block;               
     margin-left: auto;            
     margin-right: auto;   

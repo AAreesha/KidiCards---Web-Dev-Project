@@ -11,16 +11,21 @@ const Login = () => {
   const clickSoundRef = useRef(new Audio(mouse)); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [notification, setNotification] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     clickSoundRef.current.play()
+    setLoading(true); // Set loading state to true
     // Handle login logic here (e.g., call an API)
     console.log('Email:', email);
     console.log('Password:', password);
     signInWithEmailAndPassword(auth,email,password)
     .then((userCredential)=>{
+      setNotification('Login successful!');
+      setLoading(false); // Reset loading state
       console.log(userCredential)
       navigate('/mainpage'); 
 
@@ -67,19 +72,18 @@ const Login = () => {
           
   
       
-        <button type="submit" className='login-button'>
-          Login
+        <button type="submit" className='login-button'  disabled={loading}>
+          {loading ? 'Loading...' : 'Login'}
         </button>
       </form>
       <p style={{ marginTop: '15px' }}>
         Dont have an account? <a href="/register">Register here</a>
       </p>
-      {/* <p>
-          Go To Home Page<a href="/mainpage">Mainpage</a>
-      </p>
-      <p>
-          Go To About Us<a href="/aboutus">About Us</a>
-      </p> */}
+        {notification && (
+          <div className="notification">
+            {notification}
+          </div>
+        )}
     </div>
   );
 };

@@ -11,7 +11,7 @@
     background-repeat: no-repeat;    
 }
 .Main-heading{
-    font-family: 'Lilita One', sans-serif;
+  font-family: 'Lilita One', sans-serif;
   font-size: 2em; 
   font-weight: bold; 
   text-align: center; 
@@ -20,4 +20,53 @@
   color: #be749d; 
   text-transform: uppercase; 
   
+}
+
+.notification {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.notification.success {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green */
+}
+
+.notification.error {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Dark red */
+}
+
+/* Done button styling */
+.done-button {
+  margin-top: -10px;
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 12px 20px; /* Padding for height and width */
+  font-size: 30px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Hover effect */
+.done-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Disabled button styling */
+.done-button:disabled {
+  background-color: #ccc; /* Gray background when disabled */
+  color: #666; /* Darker gray text */
+  cursor: not-allowed; /* Not-allowed cursor for disabled button */
+  opacity: 0.7; /* Slightly transparent */
+}
+
+/* Focus effect for accessibility */
+.done-button:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Green glow effect */
 }

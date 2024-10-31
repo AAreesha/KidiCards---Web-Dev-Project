@@ -17,6 +17,7 @@ const Registration = () => {
         password: '',
     });
 
+    const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const [notification, setNotification] = useState(''); // State for notification message
     const navigate = useNavigate(); // Initialize useNavigate
@@ -73,6 +74,7 @@ const Registration = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Start loading
         clickSoundRef.current.play()
         const formErrors = validateForm();
         setErrors(formErrors);
@@ -106,12 +108,14 @@ const Registration = () => {
 
                 // Automatically hide notification after 3 seconds
                 setTimeout(() => {
+                    setIsLoading(false); // Stop loading
                     navigate('/mainpage'); // Redirect to the main page
                 }, 3000);
 
             } catch (error) {
                 console.error('Registration error:', error);
                 setErrors({ ...errors, registration: error.message });
+                setIsLoading(false); // Stop loading on error
             }
         }
     };
@@ -175,7 +179,7 @@ const Registration = () => {
                     {errors.password && <p className="error-message">{errors.password}</p>}
 
                     <button type="submit" className="register-btn">
-                        Register
+                        {isLoading ? 'Loading...' : 'Register'}
                     </button>
                     <button type="button" className="google-signup-btn">
                         Sign Up with Google
