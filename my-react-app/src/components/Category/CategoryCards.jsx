@@ -5,10 +5,11 @@ import { auth} from '../../firebase'; // Import Firebase auth and Firestore
 import { doc, deleteDoc, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions
 import DeleteIcon from '@mui/icons-material/Delete'; // Import the delete icon
 import './CategoryCards.css'; // Your custom styles
-
+import CircularProgress from '@mui/material/CircularProgress'; // Import loading spinner
 const CategoryCard = ({ id, image, name }) => {
   const [isAdmin, setIsAdmin] = useState(false); // State to hold admin status
-
+  const [notification, setNotification] = useState(''); // State for notification
+  const [loading, setLoading] = useState(false); // State for loading
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -32,6 +33,8 @@ const CategoryCard = ({ id, image, name }) => {
 
   const handleDelete = async (event) => {
     event.stopPropagation(); // Prevents the click event from bubbling up to parent elements
+    setLoading(true); // Set loading state to true
+    setNotification(''); // Clear previous notifications
     try {
       // Delete both subcollections: englishFlashcards and urduFlashcards
       await deleteSubcollection('englishFlashcards'); // Delete englishFlashcards subcollection
@@ -39,8 +42,17 @@ const CategoryCard = ({ id, image, name }) => {
       await deleteDoc(doc(db, 'categories', id));     // Delete the category document
       console.log(`Category with ID: ${id} and its subcollections deleted successfully.`);
       // Optionally, add logic to refresh the category list or notify the user
+      // Set the notification message
+      setNotification('Category and its flashcards deleted successfully.');
+      
+      // Optionally, reset notification after a few seconds
+      setTimeout(() => setNotification(''), 3000); // Clear notification after 3 seconds
     } catch (error) {
+      setNotification('Error deleting category. Please try again.');
       console.error('Error deleting category or its subcollections: ', error);
+    } finally {
+      setLoading(false); // Set loading state back to false after operation
+      setTimeout(() => setNotification(''), 3000); // Clear notification after 3 seconds
     }
   };
 
@@ -50,10 +62,17 @@ const CategoryCard = ({ id, image, name }) => {
       <h3>{name}</h3>
       {isAdmin && (
         <button className='delete-category' onClick={handleDelete}>
-          <DeleteIcon className="delete-icon" /> {/* Add the icon with some margin */}
-          Delete 
+          {loading ? (
+           <>Deleting...</> // Show loading spinner
+          ) : (
+            <>
+              <DeleteIcon className="delete-icon" /> {/* Add the icon with some margin */}
+              Delete 
+            </>
+          )}
         </button>
       )}
+       {notification && <div className="notification">{notification}</div>} {/* Display notification */}
     </div>
   );
 };
