@@ -5,7 +5,7 @@ import { auth} from '../../firebase'; // Import Firebase auth and Firestore
 import { doc, deleteDoc, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions
 import DeleteIcon from '@mui/icons-material/Delete'; // Import the delete icon
 import './CategoryCards.css'; // Your custom styles
-import CircularProgress from '@mui/material/CircularProgress'; // Import loading spinner
+// import CircularProgress from '@mui/material/CircularProgress'; // Import loading spinner
 const CategoryCard = ({ id, image, name }) => {
   const [isAdmin, setIsAdmin] = useState(false); // State to hold admin status
   const [notification, setNotification] = useState(''); // State for notification

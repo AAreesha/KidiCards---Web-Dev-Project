@@ -13,6 +13,8 @@ const FirebaseForm = () => {
   const [categoryImage, setCategoryImage] = useState(null);
   const [urduName, setUrduName] = useState('');
   const [englishName, setEnglishName] = useState('');
+  const [notification, setNotification] = useState('');
+  const [loading, setLoading] = useState(false);
   
   // State for flashcards
   const [urduFlashcards, setUrduFlashcards] = useState([]);
@@ -40,7 +42,11 @@ const FirebaseForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setNotification('');
+    // setNotification('Uploading data, please wait...');
 
+    try{
     // Upload category image to Firebase Storage
     const categoryImageRef = ref(storage, `categoryImages/${categoryImage.name}`);
     await uploadBytes(categoryImageRef, categoryImage);
@@ -103,6 +109,10 @@ const FirebaseForm = () => {
       await addDoc(collection(db, `categories/${categoryDoc.id}/englishFlashcards`), flashcardData);
     }
 
+    setNotification('Category and flashcards uploaded successfully!');
+    setLoading(false);
+
+
     // Reset form fields
     setCategoryName('');
     setCategoryImage(null);
@@ -110,6 +120,11 @@ const FirebaseForm = () => {
     setEnglishName('');
     setUrduFlashcards([]);
     setEnglishFlashcards([]);
+    }catch(error) {
+    console.error("Error uploading data: ", error);
+    setNotification('An error occurred. Please try again.');
+    setLoading(false);
+   }
   };
 
   return (
@@ -224,8 +239,13 @@ const FirebaseForm = () => {
           <button type="button"  onClick={handleAddEnglishFlashcard} className="admin-form-button">Add English Flashcard</button>
         </div>
 
-        <button type="submit" className="admin-form-submit">Save</button>
+        <button type="submit" className="admin-form-submit"> {loading ? 'Saving...' : 'Save'}</button>
       </form>
+      {notification && (
+      <div className="notification-form">
+        {notification}
+      </div>
+      )}
     </div>
 
 

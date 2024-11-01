@@ -1,11 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import "./Login.css"
 import Logo from "../../assets/logo.png"
 import {auth} from "../../firebase"
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import mouse from "../../assets/mouse.mp3";
-
 
 const Login = () => {
   const clickSoundRef = useRef(new Audio(mouse)); 
@@ -31,11 +30,20 @@ const Login = () => {
 
     }).catch((error)=>{
       console.error(error)
-      alert(error.message); // Show alert for user
+      setNotification('Incorrect credentials, please try again.');
+      setLoading(false)
+      // alert(error.message); // Show alert for user
     })
     
 
   };
+
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => setNotification(''), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
 
   return (
     <div className="login-container">
@@ -80,7 +88,7 @@ const Login = () => {
         Dont have an account? <a href="/register">Register here</a>
       </p>
         {notification && (
-          <div className="notification">
+          <div className="notification-login">
             {notification}
           </div>
         )}
