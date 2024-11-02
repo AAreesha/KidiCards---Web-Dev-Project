@@ -126,13 +126,25 @@ const NavBar = () => {
                 src={avatarSrc || ProfileIcon} // Display avatarSrc in dropdown as well
                 className="navbar-dropdown-icon"
               />
-              {user && <li className="navbar-user-email">Hi {username}!</li>}
-              <li><a onClick={() => navigate('/score')}>View Score</a></li>
-              <li><a onClick={() => navigate('/profile')}>Change Avatar</a></li>
-              {user && (
-                <li><button onClick={handleSignOut} className="sign-out-button">Sign Out</button></li>
-              )}
-            </ul>
+             
+                {user && (
+                  <li className="navbar-user">
+                    <span className="navbar-user-greeting">Hi, {username}!</span>
+                  </li>
+                )}
+                <li className="navbar-item">
+                  <a className="navbar-link" onClick={() => navigate('/score')}>View Score</a>
+                </li>
+                <li className="navbar-item">
+                  <a className="navbar-link" onClick={() => navigate('/profile')}>Change Avatar</a>
+                </li>
+                {user && (
+                  <li className="navbar-item">
+                    <button onClick={handleSignOut} className="navbar-signout-button">Sign Out</button>
+                  </li>
+                )}
+              </ul>
+        
           )}
         </div>
       </div>

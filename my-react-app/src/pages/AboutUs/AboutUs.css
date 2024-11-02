@@ -54,7 +54,7 @@
     animation-delay: 0.5s; /* Delay the start of the animation */
   }
   
-  li {
+.aboutus {
     background-color: #f9d6e5; /* Background color for each box */
     border-radius: 8px; /* Rounded corners for each box */
     padding: 15px; /* Padding inside the box */
@@ -62,7 +62,7 @@
     transition: transform 0.2s; /* Smooth transition for hover effect */
   }
   
-  li:hover {
+.aboutus:hover {
     transform: translateY(-3px); /* Lift effect on hover */
     box-shadow: 0 4px 8px rgb(219, 138, 178); /* Shadow effect on hover */
   }

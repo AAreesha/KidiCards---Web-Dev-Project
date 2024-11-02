@@ -30,12 +30,12 @@ const AboutUs = () => {
         <div className="about-features">
           <h2 className="fade-in-up">KEY FEATURES</h2>
           <ul className="fade-in-up">
-          <li>Bilingual Learning: Supports both English and Urdu for a comprehensive experience.</li>
-  <li>Interactive Flashcards: Visually engaging flashcards with sound for enhanced learning.</li>
-  <li>Gamified Learning: Points, leaderboards, and matching games to boost engagement.</li>
-  <li>Knowledge Testing: MCQs with instant feedback and visual effects.</li>
-  <li>Progress Tracking: Parents can monitor their child&apos;s progress and achievements.</li>
-  <li>Accessible Education: Provides a quality learning tool for children with limited schooling access.</li>
+          <li className='aboutus'>Bilingual Learning: Supports both English and Urdu for a comprehensive experience.</li>
+  <li className='aboutus'>Interactive Flashcards: Visually engaging flashcards with sound for enhanced learning.</li>
+  <li className='aboutus'>Gamified Learning: Points, leaderboards, and matching games to boost engagement.</li>
+  <li className='aboutus'>Knowledge Testing: MCQs with instant feedback and visual effects.</li>
+  <li className='aboutus'>Progress Tracking: Parents can monitor their child&apos;s progress and achievements.</li>
+  <li className='aboutus'>Accessible Education: Provides a quality learning tool for children with limited schooling access.</li>
           </ul>
         </div>
         <img src={icon4} alt="Features" className="features-image slide-in" />

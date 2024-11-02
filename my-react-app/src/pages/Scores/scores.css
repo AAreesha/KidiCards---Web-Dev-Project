@@ -30,7 +30,7 @@
 
 /* Table Header */
 .score-table thead tr {
-    background-color: pink;
+    background-color: rgb(232, 124, 142);
     color: #fff;
     font-weight: bold;
 }
@@ -43,7 +43,7 @@
 
 /* Table Rows */
 .score-table tbody tr:nth-child(even) {
-    background-color: rgb(224, 200, 204);
+    background-color: rgb(255, 205, 213);
 }
 
 .score-table tbody tr:hover {
