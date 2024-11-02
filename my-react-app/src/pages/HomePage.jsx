@@ -9,6 +9,7 @@ import "./HomePage.css";
 
 const HomePage = () => {
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
+  clickSoundRef.current.preload = 'auto';
   const navigate = useNavigate(); 
 
   // Function to handle button click and play mouse click sound

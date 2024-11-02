@@ -27,6 +27,7 @@ import { useState } from 'react';
 const Mainpage = () => {
   const [categories,setCategories] = useState([])
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
+  clickSoundRef.current.preload = 'auto';
   const navigate = useNavigate(); 
 
   useEffect(()=>{

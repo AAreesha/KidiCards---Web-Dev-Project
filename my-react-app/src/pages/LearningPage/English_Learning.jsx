@@ -14,6 +14,7 @@ const EnglishCategoryPage = () => {
   const { categoryName } = useParams(); // Get the category ID from the URL
   const navigate = useNavigate();
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
+  clickSoundRef.current.preload = 'auto';
   console.log("Id: ",categoryName)
   const [categoryname, setCategoryName] = useState(''); // State to store the English name
 

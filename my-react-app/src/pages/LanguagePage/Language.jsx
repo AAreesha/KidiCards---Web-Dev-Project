@@ -10,6 +10,7 @@ const CategoryDetail = () => {
   const { categoryId } = useParams(); // Get the category from the URL
   const navigate = useNavigate(); // For programmatic navigation
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
+  clickSoundRef.current.preload = 'auto';
   const [category, setCategory] = useState({ english: '', urdu: '', image: '' }); // Initialize state
 
   useEffect(() => {

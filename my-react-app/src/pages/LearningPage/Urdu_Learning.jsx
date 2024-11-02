@@ -15,6 +15,7 @@ const UrduCategoryPage = () => {
   console.log("Id: ",categoryName)
   const navigate = useNavigate();
   const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
+  clickSoundRef.current.preload = 'auto';
   const [categoryname, setCategoryName] = useState(''); // State to store the English name
 
   useEffect(() => {

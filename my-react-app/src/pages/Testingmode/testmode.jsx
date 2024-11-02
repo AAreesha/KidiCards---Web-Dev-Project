@@ -4,7 +4,6 @@ import FlashcardContainer from '../../components/Testmode/test';
 import NavBar from '../../components/NavBar/NavBar';
 import { getFirestore, collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { auth } from '../../firebase'; // Ensure auth is imported
-import Confetti from 'react-confetti';
 import './testmode.css';
 
 const TestPage = () => {
@@ -17,12 +16,7 @@ const TestPage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
   const [notification, setNotification] = useState({ message: '', type: '' });
-  const [showConfetti, setShowConfetti] = useState(false);
   const navigate = useNavigate();
-  const [windowDimensions, setWindowDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
   let heading = '';
 
   useEffect(() => {
@@ -62,23 +56,9 @@ const TestPage = () => {
     }
   }, [flashcards]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const getNextFlashcard = () => {
-    if (testedFlashcards.size === flashcards.length) {
-      setShowConfetti(true);
-      return;
-    }
 
     let randomIndex;
     do {
@@ -112,11 +92,6 @@ const TestPage = () => {
       setIsCorrect(true);
       setScore(prevScore => prevScore + 1);
       setNotification({ message: 'Great job! 🎉', type: 'success' });
-      if (testedFlashcards.size + 1 === flashcards.length) {
-        setShowConfetti(true); // Show confetti after the last question
-       
-      }
-    
     } else {
       setIsCorrect(false);
       setNotification({ message: 'Oh no, try again! 😢', type: 'error' });
@@ -177,12 +152,6 @@ const TestPage = () => {
       <button className = "done-button" onClick={handleDone} disabled={isDoneButtonDisabled}>
         Done
       </button>
-      {showConfetti && (
-        <Confetti
-          width={windowDimensions.width}
-          height={windowDimensions.height}
-        />
-      )}
     </div>
   );
 };

@@ -8,6 +8,7 @@ import mouse from "../../assets/mouse.mp3";
 
 const Login = () => {
   const clickSoundRef = useRef(new Audio(mouse)); 
+  clickSoundRef.current.preload = 'auto';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);

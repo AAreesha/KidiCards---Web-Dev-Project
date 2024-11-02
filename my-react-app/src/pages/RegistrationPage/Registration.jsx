@@ -10,6 +10,7 @@ import { doc, setDoc, getDocs, collection } from 'firebase/firestore'; // Import
 
 const Registration = () => {
     const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
+    clickSoundRef.current.preload = 'auto';
     const [formData, setFormData] = useState({
         username: '',
         email: '',
