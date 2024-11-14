@@ -149,3 +149,24 @@
 .home-login-btn {
   margin-top: 15px;
 }
+@media (max-width: 768px) {
+  .home-logo {
+    width: 300px;
+    margin-top: 15vh;
+  }
+
+  .home-login-btn,
+  .home-register-btn {
+    width: 150px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .cloud {
+    width: 250px;
+  }
+
+  .smolcloud {
+    width: 150px;
+  }
+}

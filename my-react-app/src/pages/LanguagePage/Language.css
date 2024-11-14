@@ -35,3 +35,21 @@
   text-transform: uppercase; /* Optional: Make the text uppercase */
   background-color: #fff6f6; /* Optional: Background color to match container */
 }
+/* Adjustments for mobile devices (screens 768px and below) */
+@media (max-width: 768px) {
+  .language-detail-container {
+      padding-top: 120px; /* Reduce top padding for better fit */
+  }
+
+  /* Flexbox grid for category cards */
+  .languagecategory-grid {
+      grid-template-columns: 1fr; /* Change to a single column layout */
+      padding: 10px; /* Reduce padding for better space utilization */
+      max-width: 100%; /* Ensure the grid spans full width */
+  }
+
+  .languagepage-heading {
+      font-size: 1.5rem; /* Smaller font size for heading */
+      margin-bottom: 30px; /* Reduce margin between heading and content */
+  }
+}

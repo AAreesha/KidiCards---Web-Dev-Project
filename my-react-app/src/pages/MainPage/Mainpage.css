@@ -39,3 +39,25 @@
   text-transform: uppercase; /* Optional: Make the text uppercase */
   background-color: #fff6f6; /* Optional: Background color to match container */
 }
+/* Adjustments for mobile devices (screens 768px and below) */
+@media (max-width: 768px) {
+  .mainpage-container {
+      padding: 15px; /* Reduce padding for a compact look on mobile */
+      padding-top: 150px; /* Adjust top padding for smaller screens */
+  }
+
+  .mainpage-heading {
+      font-size: 1.8em; /* Reduce font size for the heading */
+      margin-bottom: 10px; /* Decrease space between heading and grid */
+  }
+
+  .category-grid {
+      grid-template-columns: 1fr 1fr; /* Display grid with 2 columns on mobile */
+      gap: 15px; /* Reduce gap between cards */
+      max-width: 100%; /* Allow full width on mobile */
+  }
+  
+  .category-link {
+      font-size: 0.9em; /* Slightly smaller font size within category links */
+  }
+}

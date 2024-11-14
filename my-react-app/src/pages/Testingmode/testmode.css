@@ -70,3 +70,23 @@
   outline: none; /* Remove default outline */
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Green glow effect */
 }
+@media (max-width: 768px) {
+  .test-page {
+      padding: 150px 20px; /* Reduced padding for tablet screens */
+  }
+
+  .Main-heading {
+      font-size: 1.5em; /* Smaller font size for tablets */
+      margin-bottom: 20px; /* More space below the heading */
+  }
+
+  .done-button {
+      font-size: 24px; /* Smaller font size for the button */
+      padding: 10px 15px; /* Adjust button padding */
+  }
+
+  .notification {
+      font-size: 14px; /* Smaller text for notifications */
+      padding: 8px 15px; /* Reduced padding for notifications */
+  }
+}

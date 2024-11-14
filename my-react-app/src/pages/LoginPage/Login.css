@@ -114,4 +114,41 @@
     90% { opacity: 1; }
     100% { opacity: 0; }
   }
-  
+  /* Adjustments for mobile devices (screens 768px and below) */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px; /* Add padding to give breathing space on mobile */
+    }
+
+    .login-logo img {
+        width: 250px; /* Reduce logo size for mobile */
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .form-container {
+        width: 90%; /* Increase form width to fit mobile screens */
+        padding: 15px; /* Adjust padding for a compact look */
+    }
+
+    .login-form-group input,
+    .login-form-group select {
+        width: 85%; /* Increase input and select field width */
+        padding: 10px; /* Reduce padding for smaller screens */
+        font-size: 14px; /* Adjust font size for mobile */
+        margin: 8px 0; /* Reduce margin for compact layout */
+    }
+
+    .login-button {
+        width: 80%; /* Adjust button width to fit mobile screen */
+        font-size: 14px; /* Slightly smaller font size */
+        padding: 10px; /* Adjust padding to fit smaller screens */
+        margin: 15px auto; /* Center buttons with spacing */
+    }
+
+    .notification-login {
+        font-size: 14px; /* Reduce notification font size */
+        padding: 8px 15px; /* Adjust padding for smaller screens */
+        bottom: 10px; /* Move notification closer to bottom */
+    }
+}

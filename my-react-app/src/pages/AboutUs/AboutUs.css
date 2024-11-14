@@ -145,4 +145,62 @@
   .mission-btn:hover, .vision-btn:hover {
     animation: pulse 0.5s infinite;
   }
-  
+  /* Adjustments for mobile devices (screens 768px and below) */
+@media (max-width: 768px) {
+  .about-us {
+      margin: 10px;
+      margin-top: 100px; /* Reduce top margin */
+      background-size: cover; /* Make sure background scales */
+  }
+
+  .about-header {
+      padding: 20px;
+      margin-bottom: 20px; /* Reduce spacing */
+  }
+
+  .about-header h1 {
+      font-size: 1.8rem; /* Smaller heading size */
+  }
+
+  .about-header p {
+      font-size: 1rem; /* Adjust paragraph font size */
+      margin-top: 5px;
+  }
+
+  .header-image {
+      width: 100px; /* Scale down image size */
+      bottom: 20px;
+      right: 10px; /* Adjust positioning */
+  }
+
+  .about-section {
+      padding: 15px; /* Reduce padding for smaller screens */
+      margin-bottom: 15px;
+  }
+
+  .about-section h2 {
+      font-size: 1.5rem; /* Smaller section heading */
+  }
+
+  .about-section img {
+      width: 100px; /* Smaller image size */
+      top: -20px;
+      right: 10px; /* Adjust position */
+  }
+
+  .aboutus {
+      padding: 10px; /* Adjust padding for compact layout */
+      margin: 5px 0; /* Reduce margin between elements */
+  }
+
+  .about-btn, .mission-btn, .vision-btn {
+      padding: 8px 16px; /* Decrease button padding */
+      font-size: 0.9rem; /* Smaller font size for buttons */
+  }
+
+  /* Adjust the animation sizes if they impact layout */
+  .about-section h2, .about-section p, .about-section ul {
+      margin-top: 15px;
+      margin-bottom: 15px; /* Reduce space between elements */
+  }
+}

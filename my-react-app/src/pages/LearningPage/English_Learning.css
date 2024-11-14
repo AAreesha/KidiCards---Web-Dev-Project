@@ -33,4 +33,24 @@
     text-transform: uppercase; /* Optional: Make the text uppercase */
     background-color: #fff6f6; /* Optional: Background color to match container */
   }
-  
+/* Adjustments for mobile devices (screens 768px and below) */
+@media (max-width: 768px) {
+  .Englishcategory-page-container {
+      padding: 150px 20px 20px; /* Reduce top padding and adjust sides for mobile */
+  }
+
+  .Englishcard-column {
+      flex-direction: column; /* Stack the cards vertically for better mobile layout */
+      gap: 20px; /* Reduced gap between cards */
+  }
+
+  .Englishcard-heading {
+      font-size: 2.9rem; /* Smaller font size for heading on mobile */
+      margin-left: 0; /* Reset left margin for centering */
+      margin-bottom: 20px; /* Reduce margin for better fit on mobile */
+      color: #be749d; /* Ensure the text color is visible */
+      padding: 0 20px; /* Add some padding to prevent text from being too close to edges */
+      text-transform: uppercase; /* Optional: Make the text uppercase */
+    background-color: #fff6f6; /* Optional: Background color to match container */
+  }
+}

@@ -84,3 +84,20 @@
 .flipped .flashcard-image {
     display: none;
 }
+@media (max-width: 768px) {
+    .flashcard {
+        width: 400px !important; /* Adjusted for tablets and smaller screens */
+        height: 300px !important;
+        margin-top: 100px;
+    }
+
+    .flashcard-text {
+        font-size: 4em; /* Smaller font size for better fit */
+        margin-top: 30px;
+    }
+
+    .sound-icon {
+        width: 100px !important; /* Smaller icon size for tablets */
+        height: 60px !important;
+    }
+}

@@ -168,3 +168,44 @@
         opacity: 0;
     }
 }
+/* Adjustments for mobile devices (screens 768px and below) */
+@media (max-width: 768px) {
+    .registration-container {
+        padding: 20px; /* Add padding to give breathing space on mobile */
+    }
+
+    .logo {
+        width: 300px;
+        height: auto;
+        margin-top: 15px;
+    }
+
+    .form-container {
+        width: 90%; /* Increase width to fit more comfortably on mobile */
+        padding: 15px; /* Adjust padding to fit smaller screens */
+    }
+
+    .form-label {
+        font-size: 11px; /* Reduce font size for mobile */
+    }
+
+    .register-form input,
+    .register-form select {
+        padding: 12px;
+        font-size: 14px;
+        margin: 8px 0; /* Reduce margin for compact layout */
+    }
+
+    .register-btn,
+    .google-signup-btn {
+        width: 85%; /* Adjust button width to fit mobile screen */
+        font-size: 14px; /* Slightly smaller font size */
+        padding: 10px; /* Adjust padding to fit smaller screens */
+        margin: 15px auto; /* Center buttons with spacing */
+    }
+
+    .error-message {
+        font-size: 10px; /* Smaller error message font size */
+        margin-top: -8px;
+    }
+}

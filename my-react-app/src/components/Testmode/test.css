@@ -96,4 +96,41 @@
     75% { transform: translate(1px, -1px); }
     100% { transform: translate(0, 0); }
   }
-  
+  /* Media Queries for Tablet Screens */
+@media (max-width: 768px) {
+    .test-container {
+        margin-top: 20px; /* Reduced margin on top */
+        padding: 20px; /* Added padding for small screens */
+    }
+
+    .main-flashcard {
+        width: 90%; /* Makes the card take up more width on smaller screens */
+        height: auto; /* Adjust height for better fit */
+        padding: 15px; /* Slightly increased padding */
+        margin-bottom: 20px; /* Reduced bottom margin */
+    }
+
+    .flashcard-image-test {
+        max-width: 80%; /* Adjust image width */
+        max-height: 100%; /* Keep height auto */
+        margin: 0 auto; /* Center the image */
+        padding-bottom: 10px; /* Reduced padding */
+    }
+
+    .option-boxes {
+        flex-direction: column; /* Stack the option boxes vertically */
+        gap: 15px; /* Reduce space between option boxes */
+        margin-bottom: 30px; /* Adjusted bottom margin */
+    }
+
+    .option-box-2 {
+        width: 100%; /* Make the option boxes take full width on smaller screens */
+        font-size: 16px; /* Smaller text size */
+        padding: 10px; /* Adjust padding */
+    }
+
+    .sound-icon-test {
+        width: 50px; /* Smaller icon size */
+        height: 40px; /* Adjust height */
+    }
+}

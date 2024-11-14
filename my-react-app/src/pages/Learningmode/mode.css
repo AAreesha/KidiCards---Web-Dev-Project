@@ -148,3 +148,62 @@
   background-color: #007bff;
   color: white; /* Change text color on hover */
 }
+
+/* Adjustments for screens 768px and below */
+@media (max-width: 768px) {
+  .flashcard-page {
+      padding: 50px 20px; /* Reduce padding on smaller screens */
+   
+      background-position: top center; /* Make the background align properly */
+      background-repeat: no-repeat;
+      background-image: url('../../assets/bg.png'); /* Replace with your image path */
+  }
+
+  .page-heading {
+      font-size: 1.5rem; /* Smaller font size for heading */
+      margin-bottom: 15px; /* Adjust spacing */
+  }
+
+  /* Reducing the size of the flashcard image */
+  .flashcard-image {
+      width: 80%; /* Make image smaller */
+      max-width: 300px; /* Limit the size of the image */
+      height: auto; /* Maintain aspect ratio */
+  }
+
+  /* Adjust the button container and its buttons */
+  .button-container {
+      flex-direction: column; /* Stack buttons vertically */
+      gap: 10px; /* Space between buttons */
+  }
+
+  .button-container button {
+      padding: 10px 20px; /* Make buttons bigger for easier tapping */
+  }
+
+  /* Reducing size of the sound icon */
+  .icon-circle {
+      width: 60px; /* Smaller size */
+      height: 60px; /* Keep it proportional */
+  }
+
+  .icon-circle svg {
+      width: 30px; /* Smaller icon */
+      height: 30px; /* Maintain aspect ratio */
+  }
+
+  /* Making input fields and edit buttons more mobile-friendly */
+  .edit-container input {
+      width: 80%; /* Input fields take up more width */
+      padding: 12px; /* Increase padding */
+  }
+
+  .edit-container button {
+      padding: 12px 24px; /* Larger buttons */
+  }
+
+  .edit-button {
+      padding: 12px 24px; /* Larger edit button */
+      font-size: 16px; /* Adjust text size */
+  }
+}
