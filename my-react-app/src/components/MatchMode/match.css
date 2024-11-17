@@ -87,3 +87,41 @@
     color: white;
     border-radius: 8px;
 }
+/* Media Queries for Mobile Screens */
+@media (max-width: 768px) {
+    .match-container {
+        padding: 10px; /* Add padding for better spacing */
+        align-items: stretch; /* Allow content to stretch to fit the screen width */
+    }
+
+    .image-row {
+        flex-direction: column; /* Stack the flashcards vertically */
+        align-items: center; /* Center align the items */
+        gap: 15px; /* Reduce the gap between rows */
+        margin-bottom: 15px; /* Adjust bottom margin */
+    }
+
+    .flashcard-match,
+    .option-box,
+    .card-back {
+        width: 150px; /* Reduced width for smaller screens */
+        height: 200px; /* Reduced height for smaller screens */
+        font-size: 16px; /* Adjust font size for better readability */
+        padding: 8px; /* Adjust padding */
+    }
+
+    .flashcard-image-match {
+        width: 150px; /* Adjust width to fit flashcard size */
+        height: 120px; /* Adjust height proportionally */
+    }
+
+    .sound-icon {
+        width: 20px; /* Smaller size for the sound icon */
+        height: 20px; /* Adjust height */
+        margin-top: 5px; /* Reduced margin for better spacing */
+    }
+
+    .flashcard-content {
+        padding: 5px; /* Add some padding to the content */
+    }
+}

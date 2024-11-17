@@ -56,9 +56,12 @@ const TestPage = () => {
     }
   }, [flashcards]);
 
-
-
   const getNextFlashcard = () => {
+    // Check if all flashcards are tested
+    if (testedFlashcards.size === flashcards.length) {
+      setCurrentFlashcard(null); // Clear the current flashcard
+      return; // Exit function
+    }
 
     let randomIndex;
     do {
@@ -84,9 +87,9 @@ const TestPage = () => {
 
   const handleOptionClick = (selectedOption) => {
     setSelectedOption(selectedOption);
-  
+
     const isCorrectAnswer = selectedOption === currentFlashcard.name;
-  
+
     // Update the score only if the answer is correct
     if (isCorrectAnswer) {
       setIsCorrect(true);
@@ -96,14 +99,16 @@ const TestPage = () => {
       setIsCorrect(false);
       setNotification({ message: 'Oh no, try again! 😢', type: 'error' });
     }
-  
-    
+
     setTimeout(() => {
-      getNextFlashcard();
-      setNotification({ message: '', type: '' });
+      // Check if all flashcards are tested before proceeding
+      if (testedFlashcards.size < flashcards.length) {
+        getNextFlashcard();
+      } else {
+        setNotification({ message: 'You have completed all tests!', type: 'success' });
+      }
     }, 1000);
   };
-  
 
   const handleDone = async () => {
     try {
@@ -149,7 +154,7 @@ const TestPage = () => {
           {notification.message}
         </div>
       )}
-      <button className = "done-button" onClick={handleDone} disabled={isDoneButtonDisabled}>
+      <button className="done-button" onClick={handleDone} disabled={isDoneButtonDisabled}>
         Done
       </button>
     </div>

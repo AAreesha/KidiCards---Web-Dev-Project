@@ -55,3 +55,23 @@
   outline: none; /* Remove default outline */
   box-shadow: 0 0 5px rgba(255, 77, 77, 0.5); /* Red glow effect */
 }
+
+/* Media Query for Tablet Screens */
+@media (max-width: 768px) {
+  .matching-page {
+      padding: 150px; /* Reduce padding for better spacing on smaller screens */
+      gap: 15px; /* Reduce gap between elements */
+      align-items: stretch; /* Stretch elements to fit the width */
+  }
+
+  .Main-heading {
+      font-size: 1.5em; /* Adjust font size for smaller screens */
+      margin-bottom: 10px; /* Add some spacing below the heading */
+  }
+
+  .done-match {
+      font-size: 20px; /* Decrease font size for better fit */
+      padding: 10px 20px; /* Adjust padding for the button */
+      border-radius: 6px; /* Slightly smaller border radius */
+  }
+}
