@@ -1,7 +1,7 @@
 // Flashcard.jsx
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './Flashcard.css';
+import './flashcard.css';
 import sound from '../../assets/sound.png';
 
 const Flashcard = ({ image, text, audio, resetFlip }) => {
