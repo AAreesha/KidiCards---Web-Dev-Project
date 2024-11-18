@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { auth } from '../../firebase'; // Ensure `db` is imported from firebase config
+import { auth, provider} from '../../firebase'; // Ensure `db` is imported from firebase config
+import { signInWithPopup } from "firebase/auth"; // Import the sign-in popup method
+import AuthDetails from '../../Auth/AuthDetails'; // Import AuthDetails component
+
 import db from '../../firebase';
 import "./Registration.css";
 import Logo from "../../assets/logo.png";
@@ -9,6 +12,10 @@ import mouse from "../../assets/mouse.mp3";
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore'; // Import Firestore functions
 
 const Registration = () => {
+    const navigate = useNavigate(); // Initialize useNavigate
+
+
+    // const [value,setValue] = useState('')
     const clickSoundRef = useRef(new Audio(mouse)); // Create a new Audio object for mouse sound
     clickSoundRef.current.preload = 'auto';
     const [formData, setFormData] = useState({
@@ -17,11 +24,67 @@ const Registration = () => {
         dateOfBirth: '',
         password: '',
     });
+    
+    const handleGoogleSignIn = async () => {
+        try {
+            setIsLoading(true); // Start loading
+            const result = await signInWithPopup(auth, provider); // Use popup for Google sign-in
+            const user = result.user;
+            console.log("Google user signed in:", user);
+    
+            // Save email to localStorage
+            localStorage.setItem("email", user.email);
+    
+            // Save user data to Firestore
+            const userDoc = doc(db, 'users', user.uid); // Reference to user's document in Firestore
+            const userData = {
+                username: user.displayName || "New User", // Use the display name or default
+                email: user.email,
+                avatarId: 0, // Default avatar ID
+                scores: {
+                    english: {},
+                    urdu: {},
+                },
+            };
+    
+            // Initialize categories with default scores
+            categories.forEach((category) => {
+                userData.scores.english[category] = 0;
+                userData.scores.urdu[category] = 0;
+            });
+    
+            // Add user to Firestore
+            await setDoc(userDoc, userData, { merge: true }); // Use merge to avoid overwriting existing data
+            console.log("User data saved to Firestore");
+    
+            // Navigate to the main page
+            navigate('/mainpage');
+        } catch (error) {
+            console.error("Google Sign-In error:", error);
+            setErrors({ ...errors, google: error.message }); // Set error message
+            setIsLoading(false); // Stop loading on error
+        }
+    };
+    
+    // Persist user on auth state change
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                console.log("User signed in:", user);
+                localStorage.setItem("email", user.email);
+                navigate('/mainpage');
+            }
+        });
+        return () => unsubscribe();
+    }, [navigate]);
+    
+
+ 
 
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const [notification, setNotification] = useState(''); // State for notification message
-    const navigate = useNavigate(); // Initialize useNavigate
+   
 
     useEffect(() => {
         // Fetch categories on mount
@@ -55,19 +118,23 @@ const Registration = () => {
         // Check if username is more than 3 characters
         if (formData.username.length < 4) {
             newErrors.username = 'Username must be more than 3 characters.';
+            setIsLoading(false); // Set loading state
         }
 
         // Check if password is more than 6 characters and contains a special character
         const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
         if (formData.password.length < 7) {
             newErrors.password = 'Password must be at least 7 characters long.';
+            setIsLoading(false); // Set loading state
         } else if (!specialCharRegex.test(formData.password)) {
             newErrors.password = 'Password must contain at least one special character.';
+            setIsLoading(false); // Set loading state
         }
 
         // Email validation
         else if (!validateEmail(formData.email)) {
             newErrors.email = 'Invalid email format.';
+            setIsLoading(false); // Set loading state
         }
 
         return newErrors;
@@ -101,7 +168,7 @@ const Registration = () => {
                     email: formData.email,
                     dateOfBirth: formData.dateOfBirth,
                     scores: initialScores, // Set initial scores with categories
-                    avatar: 0 // Initialize avatar
+                    avatarId: 0 // Initialize avatar
                 });
 
                 setNotification('Account registered successfully!');
@@ -182,7 +249,8 @@ const Registration = () => {
                     <button type="submit" className="register-btn">
                         {isLoading ? 'Loading...' : 'Register'}
                     </button>
-                    <button type="button" className="google-signup-btn">
+                    
+                    <button type="button" className="google-signup-btn" onClick={handleGoogleSignIn}>
                         Sign Up with Google
                     </button>
 
@@ -191,6 +259,7 @@ const Registration = () => {
                     <p>
                         Already have an account? <a href="/login">Login</a>
                     </p>
+                    <AuthDetails/>
                 </form>
             </div>
 
