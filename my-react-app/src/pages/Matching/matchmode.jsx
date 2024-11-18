@@ -85,6 +85,7 @@ const MatchingPage = () => {
     <div className="matching-page">
       <NavBar />
       <h1 className="Main-heading">{heading}</h1>
+      <div className="matching-grid">
       <MatchContainer
         images={displayedFlashcards.map((flashcard, index) => ({
           src: flashcard.imageUrl,
@@ -92,6 +93,7 @@ const MatchingPage = () => {
         }))}
         onCardClick={handleCardClick}
       />
+      </div>
       <button className="done-match" onClick={handleDone} disabled={!isDone}>
         Done
       </button>

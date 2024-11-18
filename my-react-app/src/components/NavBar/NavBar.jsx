@@ -6,7 +6,7 @@ import { onSnapshot, doc } from "firebase/firestore"; // Real-time Firestore lis
 import db from '../../firebase'; // Firestore configuration
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Import avatar images
 import ProfileIcon from "../../assets/girl1.png";
@@ -103,11 +103,12 @@ const NavBar = () => {
       </div>
 
       <div className="navbar-icons">
-        {user?.email === 'abc@gmail.com' && (
-          <a href="/form" className="navbar-link">Add Category</a>
-        )}
-        <a href="/mainpage" className="navbar-link">Main Page</a>
-        <a href="/aboutus" className="navbar-link">About Us</a>
+      {user?.email === 'abc@gmail.com' && (
+        <Link to="/form" className="navbar-link">Add Category</Link>
+      )}
+      <Link to="/mainpage" className="navbar-link">Main Page</Link>
+      <Link to="/aboutus" className="navbar-link">About Us</Link>
+
 
         {/* Profile Icon */}
         <div className="profile-icon-wrapper" ref={dropdownRef}>

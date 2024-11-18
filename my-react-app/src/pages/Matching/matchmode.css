@@ -56,8 +56,24 @@
   box-shadow: 0 0 5px rgba(255, 77, 77, 0.5); /* Red glow effect */
 }
 
+.matching-grid {
+  display: grid;
+  gap: 20px; /* Space between cards */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Flexible columns */
+  width: 100%; /* Ensure grid spans the container */
+  max-width: 1200px; /* Optional: Limit grid's maximum width */
+  justify-content: center; /* Center grid items */
+}
+
+@media (max-width: 480px) {
+  .matching-grid {
+    grid-template-columns: repeat(3, 1fr); /* Always show 3 columns */
+  }
+}
+
 /* Media Query for Tablet Screens */
 @media (max-width: 768px) {
+  
   .matching-page {
       padding: 150px; /* Reduce padding for better spacing on smaller screens */
       gap: 15px; /* Reduce gap between elements */
