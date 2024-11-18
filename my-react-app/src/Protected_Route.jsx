@@ -1,20 +1,32 @@
-import{ useContext } from 'react';
+// ProtectedRoute.jsx
+import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import PropTypes from 'prop-types'; // Import PropTypes
-import { AuthContext } from './Authcontext'; // Import the AuthContext
+import PropTypes from 'prop-types';
+import { AuthContext } from './Authcontext';
 
-// ProtectedRoute component to restrict access to routes based on authentication status
-const ProtectedRoute = ({ element }) => {
-  const { currentUser } = useContext(AuthContext); // Access the currentUser from context
+const ProtectedRoute = ({ element, accessibleToLoggedOut = false }) => {
+  const { currentUser, loading } = useContext(AuthContext);
 
-  // If the user is authenticated, render the protected element
-  // If not authenticated, redirect the user to the login page
-  return currentUser ? element : <Navigate to="/login" replace />;
+  // Show a loading state while authentication is initializing
+  if (loading) {
+    return <div>Loading...</div>; // Replace with a spinner or your loading UI
+  }
+
+  // Restrict based on logged-in state
+  if (!currentUser && !accessibleToLoggedOut) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (currentUser && accessibleToLoggedOut) {
+    return <Navigate to="/mainpage" replace />;
+  }
+
+  return element;
 };
 
-// Add PropTypes validation for the `element` prop
 ProtectedRoute.propTypes = {
-  element: PropTypes.node.isRequired, // `element` must be a React node (JSX, components, etc.)
+  element: PropTypes.node.isRequired,
+  accessibleToLoggedOut: PropTypes.bool, // Optional prop for public routes
 };
 
 export default ProtectedRoute;

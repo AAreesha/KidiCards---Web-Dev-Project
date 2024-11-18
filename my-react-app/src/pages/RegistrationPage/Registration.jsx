@@ -259,7 +259,7 @@ const Registration = () => {
                     <p>
                         Already have an account? <a href="/login">Login</a>
                     </p>
-                    <AuthDetails/>
+                   
                 </form>
             </div>
 

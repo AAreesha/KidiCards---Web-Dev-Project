@@ -1,34 +1,26 @@
-import { createContext, useState, useEffect } from 'react';
-import { auth } from './firebase'; // Make sure to import your firebase configuration
-import { onAuthStateChanged, setPersistence, browserLocalPersistence } from 'firebase/auth';
+// Authcontext.jsx
+import  { createContext, useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
 
-// Create AuthContext
-export const AuthContext = createContext(null);
+export const AuthContext = createContext();
 
-// Define the AuthProvider component
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set Firebase authentication persistence
-    setPersistence(auth, browserLocalPersistence)
-      .then(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-          setCurrentUser(user); // Set the current user state
-        });
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
 
-        // Cleanup the subscription when the component unmounts
-        return () => unsubscribe();
-      })
-      .catch((error) => {
-        console.error("Error setting persistence:", error);
-      });
+    return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser }}>
+    <AuthContext.Provider value={{ currentUser, loading }}>
       {children}
     </AuthContext.Provider>
   );
 };
-

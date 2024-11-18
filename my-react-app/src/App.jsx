@@ -48,6 +48,7 @@
 // }
 
 // export default App;
+// App.jsx
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -64,18 +65,18 @@ import Test from './pages/Testingmode/testmode';
 import ProfileIcon from './pages/ProfileIcon/ProfileIcon';
 import Match from './pages/Matching/matchmode';
 import Score from './pages/Scores/scores';
-import ProtectedRoute from './Protected_Route'; // Import ProtectedRoute component
-import { AuthProvider } from './Authcontext';  // Import AuthProvider to wrap around the Router
+import ProtectedRoute from './Protected_Route'; // Import ProtectedRoute
+import { AuthProvider } from './Authcontext';  // Import AuthProvider
 
 function App() {
   return (
-    <AuthProvider> {/* Wrap your app in the AuthProvider to provide the context */}
+    <AuthProvider>
       <Router>
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<ProtectedRoute element={<Registration />} accessibleToLoggedOut />} />
+          <Route path="/login" element={<ProtectedRoute element={<Login />} accessibleToLoggedOut />} />
 
           {/* Protected Routes */}
           <Route path="/mainpage" element={<ProtectedRoute element={<Mainpage />} />} />
