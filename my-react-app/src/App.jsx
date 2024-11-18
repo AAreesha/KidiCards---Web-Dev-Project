@@ -53,7 +53,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Registration from './pages/RegistrationPage/Registration';
-import Login from './pages/LoginPage/login';
+import Login from './pages/LoginPage/Login';
 import Mainpage from './pages/MainPage/Mainpage';
 import Language from './pages/LanguagePage/Language';
 import EnglishCategoryPage from './pages/LearningPage/English_Learning';

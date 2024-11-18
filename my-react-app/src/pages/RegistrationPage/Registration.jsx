@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { auth, provider} from '../../firebase'; // Ensure `db` is imported from firebase config
 import { signInWithPopup } from "firebase/auth"; // Import the sign-in popup method
-import AuthDetails from '../../Auth/AuthDetails'; // Import AuthDetails component
 
 import db from '../../firebase';
 import "./Registration.css";
