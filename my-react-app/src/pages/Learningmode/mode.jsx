@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Flashcard from '../../components/flashcard/Flashcard';
+import Flashcard from '../../components/Flashcard/flashcard.jsx';
 import NavBar from '../../components/NavBar/NavBar';
 import { getFirestore, collection, onSnapshot, doc, updateDoc } from 'firebase/firestore'; // Import onSnapshot
 import './mode.css';
