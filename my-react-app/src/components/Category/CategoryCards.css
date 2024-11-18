@@ -28,7 +28,7 @@
 
 .category-card img {
   width: 150px; /* Adjust image width if necessary */
-  height: auto;
+  height: 80px;
 }
 
 .category-card h3 {
