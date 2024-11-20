@@ -149,7 +149,7 @@
 @media (max-width: 768px) {
   .about-us {
       margin: 10px;
-      margin-top: 100px; /* Reduce top margin */
+      margin-top: 200px; /* Reduce top margin */
       background-size: cover; /* Make sure background scales */
   }
 

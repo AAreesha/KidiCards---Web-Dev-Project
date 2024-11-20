@@ -75,7 +75,7 @@
 @media (max-width: 768px) {
   
   .matching-page {
-      padding: 150px; /* Reduce padding for better spacing on smaller screens */
+      padding: 200px; /* Reduce padding for better spacing on smaller screens */
       gap: 15px; /* Reduce gap between elements */
       align-items: stretch; /* Stretch elements to fit the width */
   }

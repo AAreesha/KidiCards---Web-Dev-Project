@@ -152,7 +152,7 @@
 /* Adjustments for screens 768px and below */
 @media (max-width: 768px) {
   .flashcard-page {
-      padding: 50px 20px; /* Reduce padding on smaller screens */
+      padding: 100px 20px; /* Reduce padding on smaller screens */
    
       background-position: top center; /* Make the background align properly */
       background-repeat: no-repeat;

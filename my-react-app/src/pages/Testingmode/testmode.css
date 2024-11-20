@@ -72,7 +72,7 @@
 }
 @media (max-width: 768px) {
   .test-page {
-      padding: 150px 20px; /* Reduced padding for tablet screens */
+      padding: 200px 20px; /* Reduced padding for tablet screens */
   }
 
   .Main-heading {

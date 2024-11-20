@@ -43,7 +43,7 @@
 @media (max-width: 768px) {
   .mainpage-container {
       padding: 15px; /* Reduce padding for a compact look on mobile */
-      padding-top: 150px; /* Adjust top padding for smaller screens */
+      padding-top: 200px; /* Adjust top padding for smaller screens */
   }
 
   .mainpage-heading {
