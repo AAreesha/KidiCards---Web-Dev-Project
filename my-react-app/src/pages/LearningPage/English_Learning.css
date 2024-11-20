@@ -36,7 +36,7 @@
 /* Adjustments for mobile devices (screens 768px and below) */
 @media (max-width: 768px) {
   .Englishcategory-page-container {
-      padding: 150px 20px 20px; /* Reduce top padding and adjust sides for mobile */
+      padding: 200px 20px 20px; /* Reduce top padding and adjust sides for mobile */
   }
 
   .Englishcard-column {

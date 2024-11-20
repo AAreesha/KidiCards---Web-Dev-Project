@@ -4,9 +4,10 @@
     overflow-y: auto; /* Enable vertical scrolling */
     border: 1px solid #ccc; /* Optional: border for the box */
     padding: 20px; /* Optional: padding for inner spacing */
-    margin: 20px; /* Optional: margin for spacing around the box */
+   
     border-radius: 8px; /* Optional: rounded corners */
     background-color: #fff5f5; /* Optional: background color */
+    margin-top: 90px;
 }
 
 .urdu-flashcards{
