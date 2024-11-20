@@ -38,7 +38,7 @@
 /* Adjustments for mobile devices (screens 768px and below) */
 @media (max-width: 768px) {
   .language-detail-container {
-      padding-top: 120px; /* Reduce top padding for better fit */
+      padding-top: 220px; /* Reduce top padding for better fit */
   }
 
   /* Flexbox grid for category cards */
