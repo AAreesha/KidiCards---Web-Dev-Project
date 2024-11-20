@@ -3,7 +3,7 @@ import "./Login.css"
 import Logo from "../../assets/logo.png"
 import {auth} from "../../firebase"
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import mouse from "../../assets/mouse.mp3";
 
 const Login = () => {
@@ -86,7 +86,7 @@ const Login = () => {
         </button>
       </form>
       <p style={{ marginTop: '15px' }}>
-        Dont have an account? <a href="/register">Register here</a>
+        Dont have an account?  <Link to="/register">Register here</Link>
       </p>
         {notification && (
           <div className="notification-login">

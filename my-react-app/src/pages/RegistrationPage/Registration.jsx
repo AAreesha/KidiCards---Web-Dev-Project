@@ -5,7 +5,7 @@ import { signInWithPopup } from "firebase/auth"; // Import the sign-in popup met
 import db from '../../firebase';
 import "./Registration.css";
 import Logo from "../../assets/logo.png";
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import mouse from "../../assets/mouse.mp3";
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore'; // Import Firestore functions
@@ -256,7 +256,7 @@ const Registration = () => {
                     {errors.registration && <p className="error-message">{errors.registration}</p>}
 
                     <p>
-                        Already have an account? <a href="/login">Login</a>
+                        Already have an account? <Link to = "/login">Login</Link>
                     </p>
                    
                 </form>
