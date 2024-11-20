@@ -130,3 +130,53 @@
   .navbar-signout-button:hover {
     background-color: #911c1c;
   }
+
+  /* Responsive Media Query for Small Screens */
+@media screen and (max-width: 768px) {
+  .navbar {
+      height: auto; /* Adjust height for smaller screens */
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
+      padding: 10px;
+  }
+
+  .navbar-logo {
+      width: 150px; /* Reduce logo size */
+  }
+
+  .navbar-link {
+      font-size: 14px; /* Make text smaller */
+      margin-right: 10px; /* Reduce spacing between links */
+      margin-top: 5px;
+  }
+
+  .navbar-icons {
+      margin-top: 10px; /* Add spacing for better alignment */
+  }
+
+  .search-icon {
+      font-size: 30px; /* Reduce icon size */
+      margin-right: 15px;
+  }
+
+  .navbar-profile-icon {
+      width: 40px !important; /* Reduce profile icon size */
+      height: 40px !important;
+      margin-right: 20px;
+  }
+
+  .navbar-dropdown-icon {
+      width: 50px !important; /* Adjust dropdown icon size */
+      height: 50px !important;
+      margin-left: 40px;
+  }
+
+  .navbar-user-greeting {
+      font-size: 12px; /* Reduce text size for greeting */
+  }
+
+  .navbar-signout-button {
+      padding: 0.3rem 0.8rem; /* Adjust button padding */
+      font-size: 12px; /* Smaller text */
+  }
+}
