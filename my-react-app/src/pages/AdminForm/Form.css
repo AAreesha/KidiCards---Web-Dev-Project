@@ -1,14 +1,18 @@
 /* Overall form styling */
+/* Set up the scrollable form container */
 .admin-form-scrollable {
-    max-height: 100vh !important; /* Adjust the height as necessary */
-    overflow-y: auto; /* Enable vertical scrolling */
-    border: 1px solid #ccc; /* Optional: border for the box */
-    padding: 20px; /* Optional: padding for inner spacing */
-   
-    border-radius: 8px; /* Optional: rounded corners */
-    background-color: #fff5f5; /* Optional: background color */
-    margin-top: 90px;
+    height: 100vh; /* Use the full viewport height */
+    overflow-y: auto; /* Enable scrolling only on this container */
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #fff5f5;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%; /* Ensure it doesn't overflow the screen width */
 }
+
 
 .urdu-flashcards{
     font-size: 10px;
