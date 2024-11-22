@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { auth, provider} from '../../firebase'; // Ensure `db` is imported from firebase config
-import { signInWithPopup } from "firebase/auth"; // Import the sign-in popup method
+import { signInWithPopup} from "firebase/auth"; // Import the sign-in popup method
 
 import db from '../../firebase';
 import "./Registration.css";
@@ -138,19 +138,29 @@ const Registration = () => {
 
         return newErrors;
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true); // Start loading
-        clickSoundRef.current.play()
+        clickSoundRef.current.play();
         const formErrors = validateForm();
         setErrors(formErrors);
-
+    
         if (Object.keys(formErrors).length === 0) {
             try {
+                // Check if the email already exists in your Firestore 'users' collection
+                const usersSnapshot = await getDocs(collection(db, 'users'));
+                const emailExists = usersSnapshot.docs.some(doc => doc.data().email === formData.email);
+    
+                if (emailExists) {
+                    setErrors({ ...errors, email: 'Email already in use.' });
+                    setIsLoading(false); // Stop loading
+                    return;
+                }
+    
+                // If the email does not exist, create the user in Firebase Authentication
                 const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
                 const userId = userCredential.user.uid;
-
+    
                 // Prepare initial scores data with all categories set to 0 for both English and Urdu
                 const initialScores = {
                     english: {},
@@ -160,32 +170,38 @@ const Registration = () => {
                     initialScores.english[category] = 0;
                     initialScores.urdu[category] = 0;
                 });
-
+    
                 // Save user information to Firestore
                 await setDoc(doc(db, 'users', userId), {
                     username: formData.username,
                     email: formData.email,
                     dateOfBirth: formData.dateOfBirth,
                     scores: initialScores, // Set initial scores with categories
-                    avatarId: 0 // Initialize avatar
+                    avatarId: 0, // Initialize avatar
                 });
-
+    
                 setNotification('Account registered successfully!');
                 setFormData({ username: '', email: '', dateOfBirth: '', password: '' });
-
+    
                 // Automatically hide notification after 3 seconds
                 setTimeout(() => {
                     setIsLoading(false); // Stop loading
                     navigate('/mainpage'); // Redirect to the main page
                 }, 3000);
-
             } catch (error) {
-                console.error('Registration error:', error);
-                setErrors({ ...errors, registration: error.message });
+                if (error.code === 'auth/email-already-in-use') {
+                    setErrors({ ...errors, email: 'Email already in use.' });
+                } else {
+                    console.error('Registration error:', error);
+                    setErrors({ ...errors, registration: 'Failed to register. Please try again later.' });
+                }
                 setIsLoading(false); // Stop loading on error
             }
         }
     };
+    
+
+    
 
     return (
         <div className="registration-container">

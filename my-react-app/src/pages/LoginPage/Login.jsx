@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [googleloading, setGoogleLoading] = useState(false);
   const [notification, setNotification] = useState('');
   const navigate = useNavigate();
 
@@ -36,16 +37,16 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       clickSoundRef.current.play();
-      setLoading(true);
+      setGoogleLoading(true);
 
       await signInWithPopup(auth, provider); // Use Google sign-in
       setNotification('Login successful!');
-      setLoading(false);
+      setGoogleLoading(false);
       navigate('/mainpage');
     } catch (error) {
       console.error("Google Sign-In error:", error);
       setNotification('Google Sign-In failed, please try again.');
-      setLoading(false);
+      setGoogleLoading(false);
     }
   };
 
@@ -88,12 +89,12 @@ const Login = () => {
         </button>
 
         <button
-          type="button"
+          type="submit"
           className="google-signin-button"
           onClick={handleGoogleSignIn}
-          disabled={loading}
+          disabled={googleloading}
         >
-          Sign In with Google
+           {googleloading ? 'Loading...' : 'Sign In with Google'}
         </button>
       </form>
 
