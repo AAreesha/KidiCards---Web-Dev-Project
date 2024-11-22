@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
+/* Base Styles */
 .category-link {
   text-decoration: none; /* No underline */
   color: inherit; /* Inherit the color of the text inside the card */
@@ -12,7 +13,7 @@
   flex-direction: column; /* Stack children vertically */
   align-items: center; /* Center items horizontally */
   background-color: #fff6f6; /* Optional background color */
-  padding: 20px; /* Optional: Add padding for some space around */
+  padding: 5%; /* Use percentage padding for fluidity */
   min-height: 100vh;
   padding-top: 150px;
   cursor: url(../../assets/cursor.png), default !important;
@@ -30,7 +31,7 @@
 
 .mainpage-heading {
   font-family: 'Lilita One', sans-serif;
-  font-size: 2em; /* Adjust size as needed */
+  font-size: clamp(1.5em, 3vw, 2.5em); /* Dynamically adjust font size */
   font-weight: bold; /* Make the text bold */
   text-align: center; /* Center the heading */
   margin: 0; /* Remove all margins */
@@ -39,25 +40,50 @@
   text-transform: uppercase; /* Optional: Make the text uppercase */
   background-color: #fff6f6; /* Optional: Background color to match container */
 }
-/* Adjustments for mobile devices (screens 768px and below) */
+
+/* Adjustments for tablets (screens 768px and below) */
 @media (max-width: 768px) {
   .mainpage-container {
-      padding: 15px; /* Reduce padding for a compact look on mobile */
-      padding-top: 200px; /* Adjust top padding for smaller screens */
+    padding: 10%; /* Adjust padding for smaller screens */
+    padding-top: 180px; /* Adjust top padding */
   }
 
   .mainpage-heading {
-      font-size: 1.8em; /* Reduce font size for the heading */
-      margin-bottom: 10px; /* Decrease space between heading and grid */
+    font-size: 1.8em; /* Reduce font size for the heading */
+    margin-bottom: 15px; /* Decrease space between heading and grid */
   }
 
   .category-grid {
-      grid-template-columns: 1fr 1fr; /* Display grid with 2 columns on mobile */
-      gap: 15px; /* Reduce gap between cards */
-      max-width: 100%; /* Allow full width on mobile */
+    grid-template-columns: 1fr 1fr; /* Display grid with 2 columns */
+    gap: 15px; /* Reduce gap between cards */
+    max-width: 100%; /* Allow full width on mobile */
+  }
+
+  .category-link {
+    font-size: 0.9em; /* Slightly smaller font size for links */
+  }
+}
+
+/* Adjustments for small mobile devices (screens 480px and below) */
+@media (max-width: 480px) {
+  .mainpage-container {
+    padding: 8%; /* Compact padding for very small devices */
+    padding-top: 150px;
+  }
+
+  .mainpage-heading {
+    font-size: 1.5em; /* Further reduce font size */
+    margin-bottom: 10px; /* Compact spacing */
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr; /* Single-column layout */
+    gap: 10px; /* Smaller gap */
   }
   
   .category-link {
-      font-size: 0.9em; /* Slightly smaller font size within category links */
+    font-size: 0.8em; /* Even smaller font size */
   }
 }
+
+

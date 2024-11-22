@@ -40,3 +40,75 @@
   margin-top: 10px;
 }
 
+/* Adjustments for tablets (screens 768px and below) */
+@media (max-width: 768px) {
+  .languageselection-card {
+    flex: 1 1 100%; /* Cards take full width */
+    max-width: 100%; /* Ensure they stretch to container width */
+    min-width: unset; /* Remove the minimum width constraint */
+    height: auto; /* Allow height to adjust dynamically */
+  }
+
+  .languageselection-card img {
+    width: 200px; /* Scale down the image */
+    height: 120px;
+  }
+
+  .languageselection-card h3 {
+    font-size: 24px; /* Adjust font size for heading */
+  }
+
+  .languageselection-card h3.urdu {
+    font-size: 28px; /* Adjust Urdu heading size */
+  }
+}
+
+/* Adjustments for small mobile devices (screens 480px and below) */
+@media (max-width: 480px) {
+  .languageselection-grid {
+    gap: 15px; /* Reduce gap between cards */
+    padding: 10px; /* Smaller padding */
+  }
+
+  .languageselection-card {
+    padding: 15px; /* Reduce card padding */
+  }
+
+  .languageselection-card img {
+    width: 150px; /* Further scale down the image */
+    height: 100px;
+  }
+
+  .languageselection-card h3 {
+    font-size: 20px; /* Smaller heading size */
+  }
+
+  .languageselection-card h3.urdu {
+    font-size: 24px; /* Smaller Urdu heading size */
+  }
+}
+
+/* Adjustments for large screens (1200px and above) */
+@media (min-width: 1200px) {
+  .languageselection-grid {
+    gap: 30px; /* Increase gap for better spacing */
+  }
+
+  .languageselection-card {
+    flex: 1 1 30%; /* Allow up to 3 cards in a row */
+    max-width: 30%; /* Constrain width for consistency */
+  }
+
+  .languageselection-card img {
+    width: 300px; /* Larger image size */
+    height: 180px;
+  }
+
+  .languageselection-card h3 {
+    font-size: 32px; /* Larger heading size */
+  }
+
+  .languageselection-card h3.urdu {
+    font-size: 36px; /* Larger Urdu heading size */
+  }
+}

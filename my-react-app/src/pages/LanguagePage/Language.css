@@ -53,3 +53,33 @@
       margin-bottom: 30px; /* Reduce margin between heading and content */
   }
 }
+/* Adjustments for small mobile devices (screens 480px and below) */
+@media (max-width: 480px) {
+  .language-detail-container {
+    padding: 8%; /* Compact padding for very small screens */
+    padding-top: 180px; /* Maintain space above content */
+  }
+
+  .languagecategory-grid {
+    gap: 10px; /* Smaller gaps between cards */
+    padding: 5px; /* Minimal padding */
+  }
+
+  .languagepage-heading {
+    font-size: 1.3rem; /* Further reduce font size */
+    margin-bottom: 20px; /* Minimal spacing */
+  }
+}
+
+/* Adjustments for large screens (1200px and above) */
+@media (min-width: 1200px) {
+  .languagecategory-grid {
+    grid-template-columns: repeat(3, 1fr); /* Add a third column on larger screens */
+    gap: 30px; /* Increase spacing for better layout */
+  }
+
+  .languagepage-heading {
+    font-size: 3rem; /* Larger font size for headings */
+    margin-bottom: 60px; /* Generous spacing for better readability */
+  }
+}

@@ -84,20 +84,73 @@
 .flipped .flashcard-image {
     display: none;
 }
-@media (max-width: 768px) {
+/* Large screens (1200px and above) */
+@media (min-width: 1200px) {
     .flashcard {
-        width: 400px !important; /* Adjusted for tablets and smaller screens */
-        height: 300px !important;
-        margin-top: 100px;
+        width: 600px !important; /* Larger size for big screens */
+        height: 450px !important;
     }
 
     .flashcard-text {
-        font-size: 4em; /* Smaller font size for better fit */
+        font-size: 6.5em; /* Slightly larger font size */
+    }
+
+    .sound-icon {
+        width: 180px !important;
+        height: 100px !important;
+    }
+}
+
+/* Medium screens (768px to 1199px) */
+@media (max-width: 1199px) and (min-width: 769px) {
+    .flashcard {
+        width: 500px !important;
+        height: 400px !important;
+    }
+
+    .flashcard-text {
+        font-size: 5.5em;
+    }
+
+    .sound-icon {
+        width: 150px !important;
+        height: 90px !important;
+    }
+}
+
+/* Tablets and small laptops (480px to 767px) */
+@media (max-width: 768px) and (min-width: 481px) {
+    .flashcard {
+        width: 400px !important;
+        height: 300px !important;
+    }
+
+    .flashcard-text {
+        font-size: 4em;
         margin-top: 30px;
     }
 
     .sound-icon {
-        width: 100px !important; /* Smaller icon size for tablets */
+        width: 100px !important;
         height: 60px !important;
+    }
+}
+
+/* Small mobile devices (480px and below) */
+@media (max-width: 480px) {
+    .flashcard {
+        width: 300px !important; /* Compact for small screens */
+        height: 250px !important;
+        margin-top: 80px;
+    }
+
+    .flashcard-text {
+        font-size: 2.5em; /* Adjust font size for readability */
+        margin-top: 20px;
+    }
+
+    .sound-icon {
+        width: 80px !important; /* Smaller icon for small screens */
+        height: 50px !important;
     }
 }
