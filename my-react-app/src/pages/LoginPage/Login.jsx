@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import "./Login.css"
-import Logo from "../../assets/logo.png"
-import {auth} from "../../firebase"
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import "./Login.css";
+import Logo from "../../assets/logo.png";
+import { auth, provider } from "../../firebase"; // Ensure provider is imported from Firebase config
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import mouse from "../../assets/mouse.mp3";
 
@@ -17,26 +17,36 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    clickSoundRef.current.play()
+    clickSoundRef.current.play();
     setLoading(true); // Set loading state to true
-    // Handle login logic here (e.g., call an API)
-    console.log('Email:', email);
-    console.log('Password:', password);
-    signInWithEmailAndPassword(auth,email,password)
-    .then((userCredential)=>{
-      setNotification('Login successful!');
-      setLoading(false); // Reset loading state
-      console.log(userCredential)
-      navigate('/mainpage'); 
-
-    }).catch((error)=>{
-      console.error(error)
-      setNotification('Incorrect credentials, please try again.');
-      setLoading(false)
-      // alert(error.message); // Show alert for user
-    })
     
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setNotification('Login successful!');
+        setLoading(false); // Reset loading state
+        navigate('/mainpage'); 
+      })
+      .catch((error) => {
+        console.error(error);
+        setNotification('Incorrect credentials, please try again.');
+        setLoading(false);
+      });
+  };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      clickSoundRef.current.play();
+      setLoading(true);
+
+      await signInWithPopup(auth, provider); // Use Google sign-in
+      setNotification('Login successful!');
+      setLoading(false);
+      navigate('/mainpage');
+    } catch (error) {
+      console.error("Google Sign-In error:", error);
+      setNotification('Google Sign-In failed, please try again.');
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -48,51 +58,54 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      
       <div className="login-logo">
         <img src={Logo} alt="KidiCards Logo" />
       </div>
-           
+
       <form onSubmit={handleSubmit}>
         <div className="login-form-group" style={{ marginBottom: '15px' }}>
-         
-         
           <input
             type="email"
             id="email"
             value={email}
-            placeholder='Email'
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             required
-           
           />
 
           <input
             type="password"
             id="password"
-            placeholder='Password'
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-           
           />
         </div>
-        
-          
-  
-      
-        <button type="submit" className='login-button'  disabled={loading}>
+
+        <button type="submit" className="login-button" disabled={loading}>
           {loading ? 'Loading...' : 'Login'}
         </button>
+
+        <button
+          type="button"
+          className="google-signin-button"
+          onClick={handleGoogleSignIn}
+          disabled={loading}
+        >
+          Sign In with Google
+        </button>
       </form>
+
       <p style={{ marginTop: '15px' }}>
-        Dont have an account?  <Link to="/register">Register here</Link>
+        Don{"'"}t have an account? <Link to="/register">Register here</Link>
       </p>
-        {notification && (
-          <div className="notification-login">
-            {notification}
-          </div>
-        )}
+
+      {notification && (
+        <div className="notification-login">
+          {notification}
+        </div>
+      )}
     </div>
   );
 };

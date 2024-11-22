@@ -14,6 +14,7 @@
     overflow: hidden;
 }
 
+
 .login-form-group input,
 .login-form-group select {
     width: 70%;
@@ -57,7 +58,7 @@
     width: 300px;
 
 }
-
+.google-signin-button,
 .login-button {
     background-color: #f29fb5; /* Pink */
     border: none;
@@ -71,6 +72,7 @@
     margin-bottom: 5px;
     box-shadow: 0 3px 5px  #965063; 
 }
+
 
 
 
