@@ -1,5 +1,8 @@
 /* Page Layout */
+
+
 .score-page {
+   
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,11 +14,15 @@
 
 /* Heading */
 .score-heading {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 4rem;
+    margin-bottom: 100px;
     color: #333;
 }
 
+.add-flashcard-container {
+    margin-bottom: 10px; /* Adjust the value as needed */
+  }
+  
 /* Table Styles */
 .score-table {
     margin-top: 100px;
@@ -50,6 +57,70 @@
     background-color: #e0f7ff;
     cursor: pointer;
 }
+
+/* Motivational Text */
+.motivation {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: rgb(232, 124, 142);
+    font-weight: bold;
+}
+
+/* Progress Bar */
+.progress-container {
+    background-color: rgb(255, 205, 213);
+    border-radius: 20px;
+    width: 80%;
+    height: 20px;
+    margin: 20px 0;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: rgb(232, 124, 142);
+    transition: width 0.5s ease;
+}
+
+/* Progress Text */
+.progress-text {
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+/* Cards */
+.cards-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 250px;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    color: rgb(232, 124, 142);
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #555;
+}
+
 
 /* Media Query for Tablet Screens */
 @media (max-width: 768px) {
